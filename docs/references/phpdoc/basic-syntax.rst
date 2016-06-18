@@ -1,20 +1,30 @@
-Basic Syntax
+基本文法
 ============
 
 This chapter gives an overview of the syntax of "DocBlocks".
 The precise effect of a tag including examples are provided in different chapters which are accessible via this
 document.
 
-What is a DocBlock?
+この章では「Docブロック」の文法の概観について説明します。
+例を含むタグの詳細な説明については、それぞれの章を参照してください。
+
+Docブロックって何？
 -------------------
 
 A DocBlock is a special type of comment that can provide verbose information about an element in your code.
+
+Docブロックはコードに詳細な情報を記述することができる、特別な種類のコメント文です。
 
 The information provided in this type of comment can be used by developers to gain understanding of the function of a
 given element; but it is also used by IDEs to provide (among others) auto-completion and by phpDocumentor to generate
 API documentation.
 
+このコメントは機能についての理解を促進させる情報を提供するために利用されます。
+DocコメントをもとにIDEが自動補完の手がかりとしたり、phpDocumentorがAPIドキュメントを生成します。
+
 This is an example of a DocBlock as it can be encountered:
+
+よく見られるDocコメントの例です。
 
 .. code-block:: php
    :linenos:
@@ -39,40 +49,77 @@ This is an example of a DocBlock as it can be encountered:
      * @param string $example2 This is a second example.
      */
 
-Which elements can have a DocBlock
+    /**
+     * これはDocブロックの要約です
+     *
+     * これはDocブロックの説明です。このテキストは複数行を含み、
+     * _markdown_ を含んでも良いです。
+     *
+     * * Markdown風のリスト機能もある
+     * * 一度試してみてね
+     *
+     * 説明文のあとにはタグを含みます。
+     * タグによって構造化されたメタデータを記述できます。
+     *
+     * @author  Mike van Riel <me@mikevanriel.com>
+     *
+     * @since 1.0
+     *
+     * @param int    $example  これは函数/メソッドの引数の説明文の例です。
+     * @param string $example2 これはふたつめの例です。
+     */
+
+Docブロックにはどんな要素を含むか
 ----------------------------------
 
 :term:`Structural Elements` can all be preceded by a DocBlock. The following elements are counted as such:
 
-    * namespace
+構造的な要素にはDocブロックを前置することができます。それは以下のような要素です
+
+    * 名前空間 / namespace
     * require(_once)
     * include(_once)
-    * class
-    * interface
-    * trait
-    * function (including methods)
-    * property
-    * constant
-    * variables, both local and global scope.
+    * クラス / class
+    * インターフェイス / interface
+    * トレイト / trait
+    * 函数 / function (メソッドを含む)
+    * プロパティ / property
+    * 定数 / constant
+    * 変数(ローカルおよびグローバル) / variables, both local and global scope.
 
 A more detailed description of what :term:`Structural Elements` are and how DocBlocks apply to them can be found in
 the :doc:`definitions`.
 
-Sections
---------
+:term:`Structural Elements` が何かについての詳細な説明は :doc:`definitions` にあります。
+
+セクション / Sections
+---------------------
 
 A DocBlock roughly exists of 3 sections:
 
+Docブロックには、およそ三つのセクションがあります。
 
 1. Summary; a one-liner which globally states the function of the documented element.
+
+   要約： 文書化された要素の機能についての概要を一行で記述します
+
 2. Description; an extended description of the function of the documented element; may contain markup and inline tags.
+
+   説明文： 文書化された要素の機能について追加で説明します。文中にマーク付けとインラインタグを含むことができます。
+
 3. Tags; a series of descriptors for properties of this element; such as @param and @return.
 
-Summary
-~~~~~~~
+   タグ： 文書化された要素の機能の性質について記述するもので、 @param や @return などがあります。
+
+要約 / Summary
+~~~~~~~~~~~~~~
 
 The summary is used to give an impression of the function of the documented element. This can be used in overviews to
 allow the user to skim the documentation in search of the required template.
+
+サマリは文書化された要素の機能について印象付けるために利用されます。これによって、ユーザが必要なテンプレートの検索に概要に使用することができます。
+
+………
 
 Summaries should always end in either a full stop, or 2 consecutive new lines. If it is not closed like this then any
 description will be considered as part of the summary.
