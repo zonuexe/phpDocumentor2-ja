@@ -1,8 +1,9 @@
-Glossary
+用語集
 ========
 
 .. glossary::
 
+    Docコメント
     DocComment
     DocComments
         This is a special type of comment which starts with `/**`, ends with `*/` and may contain any number of lines
@@ -25,6 +26,7 @@ Glossary
              * <...>
              */
 
+    Docブロック
     DocBlock
     DocBlocks
         This is a :term:`DocComment` containing a single :term:`PHPDoc` and represents the basic in-source
@@ -41,6 +43,7 @@ Glossary
              * @return string
              */
 
+    抽象構文木
     AST
     Abstract Syntax Tree
     Abstract Syntax Tree (AST)
@@ -78,25 +81,30 @@ Glossary
              * @return string
              */
 
+    構造要素
     Structural Element
     Structural Elements
         This is a collection of Programming Constructs which SHOULD be preceded by a :term:`DocBlock`. The collection
         contains the following constructs:
 
+        :term:`Docブロック` を前置すべき言語構造の総称です。次のようなものが挙げられます。
+
         * file
         * require(_once)
         * include(_once)
-        * class
-        * interface
-        * trait
-        * function (including methods)
-        * property
-        * constant
+        * クラス / class
+        * インターフェイス / interface
+        * トレイト / trait
+        * 函数 / function (メソッドを含む)
+        * プロパティ / property
+        * 定数 / constant
 
         It is RECOMMENDED to precede :term:`Structural Elements` with a :term:`DocBlock` at its definition and not with
         each individual usage.
 
-        Example:
+        :term:`Docブロック` は個々の使用箇所ではなく、定義の :term:`構造要素` に記述することを推奨します(RECOMMENDED)。
+
+        例：
 
         .. code-block:: php
            :linenos:
@@ -107,7 +115,16 @@ Glossary
             // there should be no docblock here
             $int++;
 
-        Or:
+        .. code-block:: php
+           :linenos:
+
+            /** @var int これはカウンターです。 */
+            $int = 0;
+
+            // ここにDocブロックは書けません
+            $int++;
+
+        または：
 
         .. code-block:: php
            :linenos:
@@ -134,8 +151,35 @@ Glossary
                 }
             }
 
+        .. code-block:: php
+           :linenos:
+
+            /**
+             * このクラスはDocブロックを書く場所の例です。
+             */
+            class Foo
+            {
+                /** @var string|null 有効なら説明文を持つべきです */
+                protected $description = null;
+
+                /**
+                 * このメソッドには説明文が設定されます。
+                 *
+                 * @param string $description 最大80文字のテキストです。
+                 *
+                 * @return void
+                 */
+                public function setDescription($description)
+                {
+                    // ここにDocブロックは書けません
+                    $this->description = $description;
+                }
+            }
+
         Another example is to document the variable in a foreach explicitly; many IDEs use this information to help you
         with auto-completion:
+
+        以下の例では、foreachの中の変数を文書にします。多くのIDEは自動補完の補助としてこの情報を利用します。
 
         .. code-block:: php
            :linenos:
@@ -147,11 +191,13 @@ Glossary
                 <...>
             }
 
+    型
     Type
         This is a generic name for anything that can be returned or provided as identity for a value.
 
         It is recommended to read the chapter :doc:`references/phpdoc/types` for a detailed description.
 
+    完全修飾要素名
     FQSEN
     Fully Qualified Structural Element Name (FQSEN)
        Each documentable element can be referenced using a unique name based on its local name and any containers it is
@@ -164,6 +210,7 @@ Glossary
        This FQSEN identifies the *myMethod* method that is contained in the *MyClass* class, which in turn is contained
        inside the *My\\Space* namespace.
 
+    テンプレート
     Template
     Templates
         Templates are configuration files that change how phpDocumentor renders the generated documentation.
@@ -173,6 +220,7 @@ Glossary
     Transformations
         Action definitions that are part of :term:`Templates` and are used to determine what the template does.
 
+    要約
     Summary
       Sometimes called a short description, provides a brief introduction into the function of the associated element.
       A Summary ends
@@ -181,23 +229,27 @@ Glossary
         1. A dot is following by a line break, or
         2. Two subsequent line breaks are encountered.
 
+    説明文
     Description
         Sometimes called the long description, it can provide more information than the :term:`Summary`. Examples of
         additional information are a description of a function's algorithm, a usage example, or a description of how a
         class fits in the whole of the application's architecture. The description ends when the first :term:`Tag`
         is encountered, or when the DocBlock is closed.
 
+    タグ
     Tag
     Tags
         These provide a way to succinctly and uniformly provide meta-information about the associated element. This could,
         for example, describe the type of information that is returned by a method or function. Each tag is preceded by an
         at-sign (`@`) and starts on a new line.
 
+    インラインタグ
     Inline Tag
     Inline Tags
         Some tags can also be used within text such as descriptions, such as the :doc:`references/phpdoc/tags/link` tag.
         Inline tags are surrounded by braces to set them apart from the surrounding text.
 
+    注釈
     Annotation
     Annotations
         An annotation is a specialized form of tag, that not only documents a specific aspect of the associated element,
@@ -213,6 +265,7 @@ Glossary
 
         For more on annotations, see Rafael Dohms' `video presentation <http://protalk.me/annotating-with-annotations>`_ or `slides <http://www.slideshare.net/rdohms/annotations-in-php-they-exist>`_ on annotations.
 
+    プラグイン
     Plugin
     Service Provider
         A Service Provider is part of the Plugin system for phpDocumentor. Each plugin must have a Service Provider

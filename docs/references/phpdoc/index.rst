@@ -1,5 +1,5 @@
-PHPDoc reference
-================
+PHPDoc リファレンス
+===================
 
 .. toctree::
    :maxdepth: 2
