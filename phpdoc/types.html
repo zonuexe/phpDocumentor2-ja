@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>型の定義 &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../../index.html"/>
+        <link rel="up" title="PHPDoc リファレンス" href="index.html"/>
+        <link rel="next" title="インラインタグ リファレンス" href="inline-tags/index.html"/>
+        <link rel="prev" title="Inheritance" href="inheritance.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">型の定義</a><ul>
+<li><a class="reference internal" href="#abnf">ABNF</a></li>
+<li><a class="reference internal" href="#atomic-singular-type">単一型 / Atomic (singular) type</a><ul>
+<li><a class="reference internal" href="#valid-class-name">有効なクラス名 / Valid Class Name</a></li>
+<li><a class="reference internal" href="#keyword">キーワード / Keyword</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#multiple-types">複合型 / Multiple types</a></li>
+<li><a class="reference internal" href="#arrays">配列 / Arrays</a></li>
+</ul>
+</li>
+</ul>
+
+        <h4>Previous topic</h4>
+
+        <p class="topless"><a href="inheritance.html"
+                              title="previous chapter">Inheritance</a></p>
+        <h4>Next topic</h4>
+
+        <p class="topless"><a href="inline-tags/index.html"
+                              title="next chapter">インラインタグ リファレンス</a></p>
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="inline-tags/index.html" title="インラインタグ リファレンス" accesskey="N">
+                next
+            </a> |
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="inheritance.html" title="Inheritance" accesskey="P">
+                previous
+            </a> |
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../../index.html">Documentation</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html" >
+                リファレンス
+            </a>  &raquo;
+        </li>
+        <li>
+            <a href="index.html" accesskey="U">
+                PHPDoc リファレンス
+            </a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="id1">
+<h1>型の定義<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<p>Many tags use a <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> as part of their definition (such as the &#64;return tag).
+These types differ from the official PHP definition to be able to represent all
+kinds of data.</p>
+<p>多くのタグは定義に <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> を含みます (たとえば &#64;return タグ)。
+これらの型はあらゆる種類のデータを表現でき、PHP公式の定義とは異なります。</p>
+<p>A complete definition will be given of these types and what they represent in
+the following sections.</p>
+<p>これらの型の完全な定義と、型が何を表すかを次章で示します。</p>
+<div class="section" id="abnf">
+<h2>ABNF<a class="headerlink" href="#abnf" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span>type-expression          = 1*(array-of-type-expression|array-of-type|type [&quot;|&quot;])
+array-of-type-expression = &quot;(&quot; type-expression &quot;)[]&quot;
+array-of-type            = type &quot;[]&quot;
+type                     = class-name|keyword
+class-name               = 1*CHAR
+keyword                  = &quot;string&quot;|&quot;integer&quot;|&quot;int&quot;|&quot;boolean&quot;|&quot;bool&quot;|&quot;float&quot;
+                           |&quot;double&quot;|&quot;object&quot;|&quot;mixed&quot;|&quot;array&quot;|&quot;resource&quot;
+                           |&quot;void&quot;|&quot;null&quot;|&quot;callback&quot;|&quot;false&quot;|&quot;true&quot;|&quot;self&quot;
+</pre></div>
+</div>
+<p>When a <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> is used the user will expect a value, or set of values, as
+detailed below.</p>
+<p><a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> が使用される場合、以下に詳しく述べる値もしくは値の集合を期待します。</p>
+</div>
+<div class="section" id="atomic-singular-type">
+<h2>単一型 / Atomic (singular) type<a class="headerlink" href="#atomic-singular-type" title="Permalink to this headline">¶</a></h2>
+<p>The supported atomic types are either a <em>valid class name</em> or <em>keyword</em>.</p>
+<p>サポートされる単一型は <em>有効なクラス名</em> または <em>キーワード</em> です。</p>
+<div class="section" id="valid-class-name">
+<h3>有効なクラス名 / Valid Class Name<a class="headerlink" href="#valid-class-name" title="Permalink to this headline">¶</a></h3>
+<p>A valid class name seen from the context where this type is mentioned. Thus
+this may be either a Fully Qualified Class Name (FQCN) or if present in a
+namespace a local name.</p>
+<p>この型が言及される文脈から見て有効なクラス名です。
+これはおそらく完全修飾クラス名(FQCN)または名前空間内でのローカルな名前です。</p>
+<p>The element to which this type applies is either an instance of this class
+or an instance of a class that is a (sub-)child to the given class.</p>
+<p>この型が適用される要素は、そのクラスのインスタンスと子クラス(孫クラス)のインスタンスです。</p>
+<p>例:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> @param \My\Namespace\Class</span>
+<span class="x"> @return Exception</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="keyword">
+<h3>キーワード / Keyword<a class="headerlink" href="#keyword" title="Permalink to this headline">¶</a></h3>
+<p>A keyword defining the purpose of this type. Not every element is determined
+by a class but still worth of a classification to assist the developer in
+understanding the code covered by the <a class="reference internal" href="../../glossary.html#term-phpdoc"><em class="xref std std-term">PHPDoc</em></a>.</p>
+<p>「キーワード」は型の目的を定義します。全ての要素がクラスによって決定されるわけではなく、開発者がコードを理解することの助けになるよう <a class="reference internal" href="../../glossary.html#term-phpdoc"><em class="xref std std-term">PHPDoc</em></a> によって分類されます。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Most of these keywords are allowed as class names in PHP and as
+such are hard to distinguish from real classes. As such the keywords MUST
+be lowercase, as most class names start with an uppercase first character,
+and you SHOULD NOT use classes with these names in your code.</p>
+<p>キーワードのほとんどはPHPのクラス名として許容され、本物のクラスと区別することは難しいです。
+キーワードは小文字で記述する必要があり、ほとんどのクラスは先頭が大文字です。
+あなたのコードでこれらの名前をクラス名として使用すべきではありません。</p>
+<p>There are more reasons to not name classes with the names of these
+keywords but that falls beyond the scope of this specification.</p>
+<p class="last">これらの名前をクラス名として使ってはいけない理由はいくつもありますが、この仕様の範疇を超えます。</p>
+</div>
+<p>The following keywords are recognized:</p>
+<p>以下のようなキーワードが認識されます：</p>
+<ol class="arabic">
+<li><p class="first"><strong>string</strong>, the element to which this type applies is a string of
+binary characters.</p>
+<p>この型が適用される要素はバイナリ文字の文字列です。</p>
+</li>
+<li><p class="first"><strong>integer</strong> or <strong>int</strong>, the element to which this type applies is a whole
+number or integer.</p>
+<p>この型が適用される要素は整数です。</p>
+</li>
+<li><p class="first"><strong>boolean</strong> or <strong>bool</strong>, the element to which this type applies only has
+state true or false.</p>
+<p>この型が適用される要素は true または false です。</p>
+</li>
+<li><p class="first"><strong>float</strong> or <strong>double</strong>, the element to which this type applies is a
+continuous, or real, number.</p>
+<p>この型が適用される要素は連続量または実数です。</p>
+</li>
+<li><p class="first"><strong>object</strong>, the element to which this type applies is the instance of an
+undetermined class.</p>
+<p>この型が適用される要素はクラスを特定しないインスタンスです。</p>
+</li>
+<li><p class="first"><strong>mixed</strong>, the element to which this type applies can be of any type as
+specified here. It is not known on compile time which type will be used.</p>
+<p>この型が適用される要素は任意の型の値です。それはコンパイル時に型が使用されません。</p>
+</li>
+<li><p class="first"><strong>array</strong>, the element to which this type applies is an array of values,
+see the section on <a href="#id2"><span class="problematic" id="id3">`Arrays`_</span></a> for more details.</p>
+<p>この型が適用される要素は値の配列で、詳しくは <a href="#id4"><span class="problematic" id="id5">`Arrays`_</span></a> の節をお読みください。</p>
+</li>
+<li><p class="first"><strong>resource</strong>, the element to which this type applies is a resource per
+the definition of PHP at
+<a class="reference external" href="http://www.php.net/manual/en/language.types.resource.php">http://www.php.net/manual/en/language.types.resource.php</a>.</p>
+<p>この型が適用される要素はリソース値で、それぞれの定義は <a class="reference external" href="http://www.php.net/manual/language.types.resource.php">http://www.php.net/manual/language.types.resource.php</a> にあります。</p>
+</li>
+<li><p class="first"><strong>void</strong>, this type is commonly only used when defining the return type of a
+method or function.
+The basic definition is that the element indicated with this type does not
+contain a value and the user should not rely on any retrieved value.</p>
+<p>この型は函数またはメソッドの返り値の定義にのみ利用されます。
+基本的な定義としてはこの要素は値を含まず、ユーザーは返り値に依存してはいけないことを意味します。</p>
+<p>例：</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> /**</span>
+<span class="x">  * @return void</span>
+<span class="x">  */</span>
+<span class="x"> function outputHello()</span>
+<span class="x"> {</span>
+<span class="x">     echo &#39;Hello world&#39;;</span>
+<span class="x"> }</span>
+</pre></div>
+</td></tr></table></div>
+<p>In the example above no return statement is specified and thus is the return
+value not determined.</p>
+<p>この例ではreturn文がなく、返り値が決定されません。</p>
+<p>例 2：</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> /**</span>
+<span class="x">  * @param boolean $quiet trueなら &#39;Hello world&#39; がechoされる</span>
+<span class="x">  *</span>
+<span class="x">  * @return void</span>
+<span class="x">  */</span>
+<span class="x"> function outputHello($quiet)</span>
+<span class="x"> {</span>
+<span class="x">     if ($quiet} {</span>
+<span class="x">         return;</span>
+<span class="x">     }</span>
+<span class="x">     echo &#39;Hello world&#39;;</span>
+<span class="x"> }</span>
+</pre></div>
+</td></tr></table></div>
+<p>In this example the function contains a return statement without a given
+value. Because there is no actual value specified does this also constitute
+as type &#8216;void&#8217;.</p>
+<p>この例の函数にはreturn文がありますが、値がないため‘void’型になります。</p>
+</li>
+<li><p class="first"><strong>null</strong>, the element to which this type applies is a NULL value or, in
+technical terms, does not exist.</p>
+<p>この型が適用される値は NULL で、これは技術用語で「存在しない」ことです。</p>
+<p>A big difference compared to void is that this type is used in any situation
+where the described element may at any given time contain an explicit NULL
+value.</p>
+<p>明示的に NULL 値を含む可能性のある状況で使用されることが void との大きな差異です。</p>
+<p>例：</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> /**</span>
+<span class="x">  * @return null</span>
+<span class="x">  */</span>
+<span class="x"> function foo()</span>
+<span class="x"> {</span>
+<span class="x">     echo &#39;Hello world&#39;;</span>
+<span class="x">     return null;</span>
+<span class="x"> }</span>
+</pre></div>
+</td></tr></table></div>
+<p>This type is commonly used in conjunction with another type to indicate that
+it is possible that nothing may be returned.</p>
+<p>この型は一般に別の型に関連して、何の値も返されない可能性がある場合に使用されます。</p>
+<p>例：</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> /**</span>
+<span class="x">  * @param boolean $create_new trueのとき stdClass のインスタンスが返される</span>
+<span class="x">  *</span>
+<span class="x">  * @return stdClass|null</span>
+<span class="x">  */</span>
+<span class="x"> function foo($create_new)</span>
+<span class="x"> {</span>
+<span class="x">     if ($create_new) {</span>
+<span class="x">         return new stdClass();</span>
+<span class="x">     }</span>
+
+<span class="x">     return null;</span>
+<span class="x"> }</span>
+</pre></div>
+</td></tr></table></div>
+</li>
+<li><p class="first"><strong>callable</strong>, the element to which this type applies is a pointer to a
+function call. This may be any type of callback as defined in the PHP manual
+at <a class="reference external" href="http://php.net/manual/en/language.pseudo-types.php">http://php.net/manual/en/language.pseudo-types.php</a>.</p>
+<p>この型が適用されるのは函数呼び出しへのポインタです。
+PHPマニュアル <a class="reference external" href="http://php.net/manual/language.pseudo-types.php">http://php.net/manual/language.pseudo-types.php</a> で定義される、callbackのどのようなタイプでも良いです。</p>
+</li>
+<li><p class="first"><strong>false</strong> or <strong>true</strong>, the element to which this type applies will have
+the value true or false. No other value will be returned from this
+element.</p>
+<p>この型が適用される要素はtrueまたはfalse値です。この要素からほかの値は返されません。</p>
+<blockquote>
+<div><p>This type is commonly used in conjunction with another type to indicate
+that it is possible that true or false may be returned instead of an
+instance of the other type.</p>
+<p>この型は一般に別の型に関連して、true/falseと別の型のインスタンスが返される可能性がある場合に使用されます。</p>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>self</strong>, the element to which this type applies is of the same Class,
+or any of its children, as which the documented element is originally
+contained.</p>
+<p>この型が適用される要素は同じクラス及び子クラスで、文書化された要素そのものが含まれます。</p>
+<p>例：</p>
+<blockquote>
+<div><p>Method C() is contained in class A. The DocBlock states
+that its return value is of type <cite>self</cite>. As such method C()
+returns an instance of class A.</p>
+<p>クラス A に含まれるメソッド C() のDocブロックが戻り値 <cite>self</cite> を返すと記述されるなら、メソッド C()はクラス A のインスタンスを返します。</p>
+</div></blockquote>
+<p>This may lead to confusing situations when inheritance is involved.</p>
+<p>継承する際、これは混乱を引き起すかもしれません。</p>
+<p>例 (前の状況が継続されます)：</p>
+<blockquote>
+<div><p>Class B extends Class A and does not redefine method C(). As such
+it is possible to invoke method C() from class B.</p>
+<p>クラス B がクラス A を継承しメソッド C() は再定義されません。
+そのとき、クラス B からメソッド C() を呼び出すことができます。</p>
+</div></blockquote>
+<p>In this situation ambiguity may arise as <cite>self</cite> could be interpreted as
+either class A or B. In these cases <cite>self</cite> MUST be interpreted as being
+an instance of the Class where the DocBlock containing the <cite>self</cite> type
+is written or any of its child classes.</p>
+<p>このように <cite>self</cite> がクラス A と B のどちらとも解釈できる曖昧な状況が生じます。
+この場合において <cite>self</cite> は必ず <cite>self</cite> 型が記述されたクラスまたは子クラスのどれかのインスタンスであるように解釈しなければいけません(MUST)。</p>
+<p>In the examples above <cite>self</cite> MUST always refer to class A or B, since
+it is defined with method C() in class A.</p>
+<p>この例では C() は A で定義されるので、要素 <cite>self</cite> は常にクラス A または B を参照しなければいけません(MUST)。</p>
+<p>If method C() was to be redefined in class B, including the type
+definition in the DocBlock, then <cite>self</cite> would refer to class B or any
+of its children.</p>
+<p>もしメソッド C() がクラス B で再定義されDocブロックに型定義を含むなら、 <cite>self</cite> はクラス B または子クラスのどれかを参照します。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="multiple-types">
+<h2>複合型 / Multiple types<a class="headerlink" href="#multiple-types" title="Permalink to this headline">¶</a></h2>
+<p>When the <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> consists of multiple (sub-)types then these MUST be
+separated with the vertical bar sign (|).</p>
+<p><a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> が複数の型からなるとき、必ず複数の(派生)型を縦棒/vertical bar sign <cite>|</cite> で区切って書かなければいけません(MUST)。</p>
+<p>例：</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> @return int|null</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="arrays">
+<h2>配列 / Arrays<a class="headerlink" href="#arrays" title="Permalink to this headline">¶</a></h2>
+<p>The value represented by <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> can be an array. The type MUST be defined
+following the format of one of the following options:</p>
+<p><a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> で表現される値は配列にすることができます。この型は以下の形式のどれかで記述しなければいけません(MUST)。</p>
+<ol class="arabic">
+<li><p class="first"><strong>unspecified</strong>, no definition of the contents of the represented array is given.</p>
+<p><strong>指定しない</strong>。内容について定義しないときはarrayを記述します。</p>
+<p>例： <tt class="docutils literal"><span class="pre">&#64;return</span> <span class="pre">array</span></tt></p>
+</li>
+<li><p class="first"><strong>specified containing a single type</strong>, the <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> definition informs
+the reader of the type of each array element. Only one <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> is then
+expected as element for a given array.</p>
+<p><strong>内容の単一型を指定</strong>。この型定義は配列に含まれる要素の型を表します。この配列にはひとつの <a class="reference internal" href="../../glossary.html#term-type"><em class="xref std std-term">Type</em></a> だけが含まれることが期待されます。</p>
+<p>例: <tt class="docutils literal"><span class="pre">&#64;return</span> <span class="pre">int[]</span></tt></p>
+<p>Please note that <em>mixed</em> is also a single type and with this keyword it is
+possible to indicate that each array element contains any possible type.</p>
+<p><em>mixed</em> は単一型であり、このキーワードは配列の要素にあらゆる型を含むことを示すことに注意してください。</p>
+</li>
+<li><p class="first"><strong>specified containing multiple types</strong>, the Type definition informs the reader
+of the type of each array element. Each element can be of any of the given
+types.</p>
+<p><strong>内容の複合型を指定</strong>。この型定義は配列に含まれる要素の型を表します。この配列は各要素に指定された型のどれかを含みます。</p>
+<p>例: <tt class="docutils literal"><span class="pre">&#64;return</span> <span class="pre">(int|string)[]</span></tt></p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>many IDEs probably do not support this notation yet.</p>
+<p class="last">多くのIDEは、おそらくまだこの表記をサポートしません。</p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>
