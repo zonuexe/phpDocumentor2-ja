@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Inheritance &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../index.html"/>
+        <link rel="up" title="Guides" href="index.html"/>
+        <link rel="next" title="Running phpDocumentor" href="running-phpdocumentor.html"/>
+        <link rel="prev" title="Types" href="types.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Inheritance</a><ul>
+<li><a class="reference internal" href="#the-inheritdoc-tag">The inheritDoc tag</a></li>
+<li><a class="reference internal" href="#classes-and-interfaces">Classes and interfaces</a></li>
+<li><a class="reference internal" href="#properties">Properties</a></li>
+<li><a class="reference internal" href="#methods">Methods</a></li>
+<li><a class="reference internal" href="#related-topics">Related topics</a></li>
+</ul>
+</li>
+</ul>
+
+        <h4>Previous topic</h4>
+
+        <p class="topless"><a href="types.html"
+                              title="previous chapter">Types</a></p>
+        <h4>Next topic</h4>
+
+        <p class="topless"><a href="running-phpdocumentor.html"
+                              title="next chapter">Running phpDocumentor</a></p>
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="running-phpdocumentor.html" title="Running phpDocumentor" accesskey="N">
+                next
+            </a> |
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="types.html" title="Types" accesskey="P">
+                previous
+            </a> |
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html">Documentation</a>  &raquo;
+        </li>
+        <li>
+            <a href="index.html" accesskey="U">
+                Guides
+            </a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="inheritance">
+<h1>Inheritance<a class="headerlink" href="#inheritance" title="Permalink to this headline">¶</a></h1>
+<p>phpDocumentor is capable of inheriting a large amount of information from elements in superclasses and
+super-interfaces that have been overridden and in the case of classes and interfaces even from a superclass itself.</p>
+<p>For ease of reading this document has been separated into three parts:</p>
+<ul class="simple">
+<li>Classes and interfaces</li>
+<li>Properties</li>
+<li>Methods</li>
+</ul>
+<p>In each of these chapters we will describe how information is inherited for that specific element. If you read
+carefully then you will notice that they differ little, mostly varying in which tags are inherited and how each tag is
+influenced by a super-element.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Interfaces and classes are treated equally with regards to inheritance, as such whenever we refer to a class we also
+mean an interface to make the text easier on the eyes.</p>
+</div>
+<div class="section" id="the-inheritdoc-tag">
+<h2>The inheritDoc tag<a class="headerlink" href="#the-inheritdoc-tag" title="Permalink to this headline">¶</a></h2>
+<p>Before we discuss how the documentation for each element is inherited it is interesting to point out the inheritDoc tag.
+The inline tag <tt class="docutils literal"><span class="pre">{&#64;inheritDoc}</span></tt> is used in a description to import the description of a parent element, even if the
+child element already has a description.</p>
+<p>So let us look at an example. In the following code block we re-define (override) a method of an imaginary superclass:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>/**
+ * This is the summary.
+ *
+ * This is the description specific to the redefined method. {@inheritDoc} And this is another
+ * part specific to the redefined method.
+ */
+public function aMethod()
+{
+}
+</pre></div>
+</div>
+<p>Now suppose that the overridden method has the description <tt class="docutils literal"><span class="pre">This</span> <span class="pre">is</span> <span class="pre">the</span> <span class="pre">description</span> <span class="pre">specific</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">overridden</span>
+<span class="pre">method.</span></tt>; the description of the re-defined method will be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>This is the description specific to the redefined method. This is the description specific to the overridden
+method. And this is another part specific to the redefined method.
+</pre></div>
+</div>
+<p>As you can see, the two descriptions have been combined into one, where the overridden element&#8217;s description has been
+inserted in the location of the <tt class="docutils literal"><span class="pre">{&#64;inheritDoc}</span></tt> inline tag.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p>Currently some applications have DocBlocks containing just the <tt class="docutils literal"><span class="pre">{&#64;inheritDoc}</span></tt> inline tag to indicate that their
+complete contents should be inherited. This usage breaks with the PHPDoc Standard as summaries cannot contain inline
+tags and inheritance is automatic; you do not need to define a special tag for it.</p>
+<p class="last">However, it does make clear that an element has been explicitly documented (and thus not forgotten). As such we are
+working to include a new (normal) tag in the PHPDoc Standard <tt class="docutils literal"><span class="pre">&#64;inheritDoc</span></tt> that will serve that purpose.</p>
+</div>
+</div>
+<div class="section" id="classes-and-interfaces">
+<h2>Classes and interfaces<a class="headerlink" href="#classes-and-interfaces" title="Permalink to this headline">¶</a></h2>
+<p>Perhaps the simplest of all elements, because a DocBlock for a class makes full use of the object-oriented principles
+that PHP offers and inherits the following information from the superclass (unless overridden):</p>
+<ul class="simple">
+<li>Summary</li>
+<li>Description</li>
+<li>The following tags:<ul>
+<li>author</li>
+<li>copyright</li>
+<li>package</li>
+<li>subpackage</li>
+<li>version</li>
+</ul>
+</li>
+</ul>
+<p>As hinted at in the opening text of this chapter each of the above will only be inherited if the child&#8217;s DocBlock does
+not have the inherited element. So, for example, if the DocBlock of a subclass has a summary then it will not receive
+the superclass&#8217; summary.</p>
+<p>The <tt class="docutils literal"><span class="pre">&#64;subpackage</span></tt> tag will only be inherited if the parent&#8217;s <tt class="docutils literal"><span class="pre">&#64;package</span></tt> matches the <tt class="docutils literal"><span class="pre">&#64;package</span></tt> tag of the
+subclass; otherwise subpackages would &#8216;bleed&#8217; through into other packages where they are not desired.</p>
+</div>
+<div class="section" id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance for properties functions similar to classes and interfaces. When a superclass of the current class contains
+a property with the same name (hence, this property is re-defined) then the following information is inherited from
+that overridden property:</p>
+<ul class="simple">
+<li>Summary</li>
+<li>Description</li>
+<li>The following tags:<ul>
+<li>author</li>
+<li>copyright</li>
+<li>version</li>
+<li>var</li>
+</ul>
+</li>
+</ul>
+<p>As with classes, each of the above will only be inherited if the redefined property&#8217;s DocBlock does not have the
+element that is to be inherited. So, for example, if the DocBlock of the redefined property has a summary then it will
+not receive the overridden property&#8217;s summary.</p>
+</div>
+<div class="section" id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
+<p>Inheritance for methods functions similar to classes and interfaces. When a superclass of the current class contains
+a method with the same name (hence, this method is re-defined) then the following information is inherited from
+that overridden method:</p>
+<ul class="simple">
+<li>Summary</li>
+<li>Description</li>
+<li>The following tags:<ul>
+<li>author</li>
+<li>copyright</li>
+<li>version</li>
+<li>param</li>
+<li>return</li>
+<li>throws</li>
+</ul>
+</li>
+</ul>
+<p>As with classes, each of the above will only be inherited if the redefined method&#8217;s DocBlock does not have the
+element that is to be inherited. So, for example, if the DocBlock of the redefined method has a summary then it will
+not receive the overridden method&#8217;s summary.</p>
+</div>
+<div class="section" id="related-topics">
+<h2>Related topics<a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../references/phpdoc/inheritance.html"><em>Inheritance</em></a>, for a complete, and more elaborate, reference on inheritance.</li>
+<li><tt class="xref doc docutils literal"><span class="pre">../references/phpdoc/tags/inline/inheritdoc</span></tt>, for a full description of the <tt class="docutils literal"><span class="pre">&#64;inheritDoc</span></tt> inline tag.</li>
+</ul>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

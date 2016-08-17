@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>Learn about phpDocumentor &mdash; phpDocumentor</title>
+    <title>Design Document &mdash; phpDocumentor</title>
 
     <link rel="stylesheet" href="_static/default.css" type="text/css"/>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
@@ -68,8 +68,7 @@
     <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
-        <link rel="top" title="phpDocumentor" href="#"/>
-        <link rel="next" title="Welcome" href="welcome.html"/> 
+        <link rel="top" title="phpDocumentor" href="index.html"/> 
 </head>
 <body>
 
@@ -116,10 +115,19 @@
 
     <div class="row">
         <div class="span3">
-        <h4>Next topic</h4>
+        <h3><a href="index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Design Document</a><ul>
+<li><a class="reference internal" href="#goal">Goal</a></li>
+<li><a class="reference internal" href="#sections">Sections</a></li>
+<li><a class="reference internal" href="#tools">Tools</a></li>
+<li><a class="reference internal" href="#style-guide">Style Guide</a></li>
+<li><a class="reference internal" href="#outline">Outline</a></li>
+</ul>
+</li>
+</ul>
 
-        <p class="topless"><a href="welcome.html"
-                              title="next chapter">Welcome</a></p>
         <div id="searchbox" style="display: none">
             <h3>Search</h3>
 
@@ -142,70 +150,135 @@
                 index
             </a>
         </li>
-        <li class="right" style="margin-right: 10px; margin-top: 6px;">
-            <a href="welcome.html" title="Welcome" accesskey="N">
-                next
-            </a> |
-        </li>
         <li>
             <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
         </li>
         <li>
-            <a href="#">Documentation</a>  &raquo;
+            <a href="index.html">Documentation</a>  &raquo;
         </li> 
     </ul>
 </div>
             </div>
 
             
+            <div class="well">
+            
 
             
-  <div class="section" id="learn-about-phpdocumentor">
-<h1>Learn about phpDocumentor<a class="headerlink" href="#learn-about-phpdocumentor" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-phpdocumentor">What is phpDocumentor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#goals">Goals</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started/index.html">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started/installing.html">Installing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started/your-first-set-of-documentation.html">Your First Set of Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started/changing-the-look-and-feel.html">Changing the Look and Feel</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="guides/index.html">Guides</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/docblocks.html">Inside DocBlocks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/types.html">Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/inheritance.html">Inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/running-phpdocumentor.html">Running phpDocumentor</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="references/index.html">リファレンス</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="references/phpdoc/index.html">PHPDoc リファレンス</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/configuration.html">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/commands/index.html">Commands</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="internals/index.html">Internals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="internals/qa.html">Quality Assurance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/flow.html">Application Flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/tags.html">Tags</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/versioning.html">Versioning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/build-and-release-process.html">Build and Release process</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cookbook/index.html">Cookbook</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">用語集</a></li>
+  <div class="section" id="design-document">
+<h1>Design Document<a class="headerlink" href="#design-document" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="goal">
+<h2>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+<p>Our goal with the phpDocumentor documentation is to assist readers in getting running with phpDocumentor within a short
+timespan with a minimum of effort. These chapters are designed to become increasingly in-depth, starting with a series
+of easy tutorials and how-to&#8217;s, and ending with references that can be consulted when necessary.</p>
+</div>
+<div class="section" id="sections">
+<h2>Sections<a class="headerlink" href="#sections" title="Permalink to this headline">¶</a></h2>
+<p>To assist with a solid structuring for the documentation we have divided documents in the following sections:</p>
+<dl class="docutils">
+<dt>Getting Started</dt>
+<dd>A series of short tutorials that aim to get the user running quickly</dd>
+<dt>Guides</dt>
+<dd>More in-depth information on how specific concepts work</dd>
+<dt>References</dt>
+<dd>A pure series of specifications on configuration settings, the full PHPDoc Reference and more.</dd>
+<dt>Developer documentation</dt>
+<dd>These documents contain architectural overview, technical considerations and other documents that explain how
+phpDocumentor is designed and build. These documents not be visible in the User Manual&#8217;s table of contents to
+prevent overwhelming the reader.</dd>
+</dl>
+<p>By making this division we intend to make it easier for new documents to find their way into the documentation and that
+it is easier for readers to connect with the flow of the documentation.</p>
+</div>
+<div class="section" id="tools">
+<h2>Tools<a class="headerlink" href="#tools" title="Permalink to this headline">¶</a></h2>
+<p>Our user documentation is written using the <a class="reference external" href="http://docutils.sourceforge.net/rst.html">RestructuredText</a> markup style and converted to HTML and PDF
+using <a class="reference external" href="http://sphinx-doc.org">Sphinx</a>. For more information on installing <a class="reference external" href="http://sphinx-doc.org">Sphinx</a> we would like to refer you to their website.</p>
+<p>For our API Documentation we eat our own dogfood and generate it using phpDocumentor2.</p>
+</div>
+<div class="section" id="style-guide">
+<h2>Style Guide<a class="headerlink" href="#style-guide" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>All headings should adhere to title case.</li>
+<li>Documents are written in <em>we</em>-style; when talking about the project it is we or us and not I.</li>
 </ul>
 </div>
+<div class="section" id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This is the original outline as designed on May 30th 2013; it is expected that this will become out of date once
+the documentation becomes stable. This chapter will be removed once setup is complete as it is replaced by the
+table of contents.</p>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>Getting Started
+---------------
+
+Installing
+  System Requirements
+  Installing phpDocumentor
+    PEAR
+    PHAR
+    Composer
+    Manual Install
+
+Your First Set of Documentation
+  Writing a DocBlock
+  Running phpDocumentor
+
+Changing the Look and Feel
+  Applying a Template
+  Authoring Your Own Template
+    Building on an Existing Template
+    Starting from Scratch
+
+Extending phpDocumentor
+  Creating a Service Provider
+  Bring Tags to Life
+  Write Content the Way You Want
+
+Guides
+------
+
+Anatomy of a DocBlock
+
+Running phpDocumentor
+
+Integrating with Your Project
+  Configuration
+  IDE
+  Continuous Integration
+
+More on Templates
+
+Service Providers -- Revisited
+
+Documentation sniffs
+
+References
+----------
+
+PHPDoc Reference
+Tag Reference
+Command Reference
+Configuration Reference
+
+Developer Documentation
+-----------------------
+
+Architecture
+Service Providers
+Templates
+</pre></div>
+</div>
+</div>
 </div>
 
 
 
+            
+            </div>
             
         </div>
     </div>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Constructing the Abstract Syntax Tree &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../index.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Constructing the Abstract Syntax Tree</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#elements-vs-types">Elements vs. Types</a></li>
+<li><a class="reference internal" href="#phases-of-construction">Phases of construction</a><ul>
+<li><a class="reference internal" href="#analyze-each-file-in-the-project">Analyze each file in the project</a></li>
+<li><a class="reference internal" href="#cache-results">Cache results</a></li>
+<li><a class="reference internal" href="#link-types-to-elements">Link Types to Elements</a></li>
+<li><a class="reference internal" href="#create-a-tree-of-namespaces">Create a tree of Namespaces</a></li>
+<li><a class="reference internal" href="#create-a-tree-of-packages">Create a tree of Packages</a></li>
+<li><a class="reference internal" href="#compile-indexes">Compile indexes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html">Documentation</a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="constructing-the-abstract-syntax-tree">
+<h1>Constructing the Abstract Syntax Tree<a class="headerlink" href="#constructing-the-abstract-syntax-tree" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In this chapter we go into detail on how phpDocumentor builds the Abstract Syntax Tree, also called Descriptors, that
+is passed on to the writers. The Abstract Syntax Tree is a simplified representation of the structure of an analyzed
+project; it consists of a number of Descriptor objects that each represent an element.</p>
+<blockquote>
+<div><strong>Examples of elements are</strong>: The Project itself, Files, Namespaces, Packages, Files, Classes, Interfaces, Methods,
+Arguments, Tags and Types. There are more elements out there, please inspect the Descriptor source folder to get
+an overview.</div></blockquote>
+<p>The Abstract Syntax Tree is, as the name suggests, a hierarchy of Descriptors. As such you can expect the descriptor
+for a Method to be a child element of a Class descriptor. This hierarchy tries to follow the logical structure of your
+project as much as possible.</p>
+<p>In addition to the Abstract Syntax Tree does a projects also contain a number of <em>indexes</em>, which are collections of
+Descriptors that can match a certain theme. An example of such an index is the &#8216;elements&#8217; index, which contains a flat
+listing of all Element Descriptors in the Project.</p>
+</div>
+<div class="section" id="elements-vs-types">
+<h2>Elements vs. Types<a class="headerlink" href="#elements-vs-types" title="Permalink to this headline">¶</a></h2>
+<p>Before we discuss the way the Abstract Syntax Tree it is important to note the difference between Elements and Types.</p>
+<dl class="docutils">
+<dt>Element</dt>
+<dd>in the context of phpDocumentor, is a structural element of a project which is defined in the source code.</dd>
+<dt>Type</dt>
+<dd><p class="first">is a representation of a type of data represented by a variable or other element containing data.</p>
+<blockquote>
+<div><strong>Examples</strong>: a Property can contain a variable of the type &#8216;string&#8217; or a Method can return a variable of the
+type &#8216;DateTime&#8217;, <em>which is a class and hence also an Element</em>.</div></blockquote>
+<p class="last">As seen in the example, Types can also refer to Elements.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="phases-of-construction">
+<h2>Phases of construction<a class="headerlink" href="#phases-of-construction" title="Permalink to this headline">¶</a></h2>
+<p>phpDocumentor builds the Abstract Syntax Tree in a number of separate phases:</p>
+<ol class="arabic simple">
+<li>Analyze each file in the project<ol class="arabic">
+<li>Reflect a source file</li>
+<li>Pass the reflected data to the appropriate Assembler</li>
+<li>Filter the constructed Descriptor</li>
+<li>Validate the constructed Descriptor</li>
+</ol>
+</li>
+<li>Cache results</li>
+<li>Link Types to Elements</li>
+<li>Create a tree of Namespaces</li>
+<li>Create a tree of Packages</li>
+<li>Compile indexes</li>
+</ol>
+<p>Each of these steps are dealt with in separate parts of the application in order to improve performance. In the
+subsequent chapters I will go into detail on the process of each step and where in the application flow these happen.</p>
+<div class="section" id="analyze-each-file-in-the-project">
+<h3>Analyze each file in the project<a class="headerlink" href="#analyze-each-file-in-the-project" title="Permalink to this headline">¶</a></h3>
+<p>This is the most elaborate and CPU intensive task of the application. During this phase the <em>Parser</em> will execute a
+series of steps that will analyze a file, assemble a Descriptor for each element, filter or alter any unwanted data per
+Descriptor and finally validate the Descriptors to see if there are any issues in the original Docblocks.</p>
+</div>
+<div class="section" id="cache-results">
+<h3>Cache results<a class="headerlink" href="#cache-results" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="link-types-to-elements">
+<h3>Link Types to Elements<a class="headerlink" href="#link-types-to-elements" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="create-a-tree-of-namespaces">
+<h3>Create a tree of Namespaces<a class="headerlink" href="#create-a-tree-of-namespaces" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="create-a-tree-of-packages">
+<h3>Create a tree of Packages<a class="headerlink" href="#create-a-tree-of-packages" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="compile-indexes">
+<h3>Compile indexes<a class="headerlink" href="#compile-indexes" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

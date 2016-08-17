@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Writing your own Template &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../index.html"/>
+        <link rel="up" title="Guides" href="index.html"/>
+        <link rel="next" title="Service Providers" href="service-providers.html"/>
+        <link rel="prev" title="Project Integration" href="project-integration.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Writing your own Template</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#how-does-it-work">How Does it Work?</a></li>
+<li><a class="reference internal" href="#location-configuration">Location &amp; Configuration</a></li>
+<li><a class="reference internal" href="#templates">Templates</a></li>
+<li><a class="reference internal" href="#writers">Writers</a></li>
+<li><a class="reference internal" href="#more-than-a-theme">More Than a Theme</a></li>
+<li><a class="reference internal" href="#related-topics">Related topics</a></li>
+</ul>
+</li>
+</ul>
+
+        <h4>Previous topic</h4>
+
+        <p class="topless"><a href="project-integration.html"
+                              title="previous chapter">Project Integration</a></p>
+        <h4>Next topic</h4>
+
+        <p class="topless"><a href="service-providers.html"
+                              title="next chapter">Service Providers</a></p>
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="service-providers.html" title="Service Providers" accesskey="N">
+                next
+            </a> |
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="project-integration.html" title="Project Integration" accesskey="P">
+                previous
+            </a> |
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html">Documentation</a>  &raquo;
+        </li>
+        <li>
+            <a href="index.html" accesskey="U">
+                Guides
+            </a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="writing-your-own-template">
+<h1>Writing your own Template<a class="headerlink" href="#writing-your-own-template" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>phpDocumentor has an advanced templating system that, due to its flexibility, requires a bit of background. Themes in
+most other applications require you to follow a strict series of required files and folders in order to work. Templating
+in phpDocumentor allows you to be completely free in choosing how you organize your template.</p>
+<p>This enables you to generate not just HTML documentation but also XML output. PDFs, markdown files and more. What is
+perhaps even better is that users of templates can combine multiple templates during a single documentation run to
+produce multiple types of output simultaneously.</p>
+</div>
+<div class="section" id="how-does-it-work">
+<h2>How Does it Work?<a class="headerlink" href="#how-does-it-work" title="Permalink to this headline">¶</a></h2>
+<p>What happens is that phpDocumentor reads a special configuration file, called <tt class="docutils literal"><span class="pre">template.xml</span></tt>, that contains some
+background information on the template (such as author) and a series of action definitions that will determine what the
+template exactly does.</p>
+<p>These action definitions are called <em>transformations</em>.</p>
+<p>Each transformation is responsible for a single specific task execution and provides parameters and options to
+delegate the execution of that task to a <em>Writer</em>.</p>
+<p>For example:</p>
+<blockquote>
+<div>In order to have a fully functional website showing the API Documentation there is a CSS file included with the
+template. This CSS file needs to be copied to the destination location. As such there is a specific transformation
+in the template definition that describes: the Writer responsible for File Operations should move that file
+to a folder named &#8216;css&#8217; in the target location.</div></blockquote>
+<p>In addition to the example above there are writers that are capable of generating a Checkstyle report of errors, one or
+more HTML files using a single twig template and more. Please see <a class="reference internal" href="../references/writers/index.html"><em>Writers</em></a> for a complete
+list of writers and their actions.</p>
+<p>Almost each writer needs to know the following:</p>
+<ul class="simple">
+<li>A source location where to get its input from.</li>
+<li>A destination location where to write a file to (if applicable).</li>
+<li>and possible a query with which it can limit the operations performed on the source.</li>
+</ul>
+<p>phpDocumentor will go through each of the transformations in the order where they are defined in the <tt class="docutils literal"><span class="pre">template.xml</span></tt>
+and may set state that can be remembered between each of the transformations.</p>
+</div>
+<div class="section" id="location-configuration">
+<h2>Location &amp; Configuration<a class="headerlink" href="#location-configuration" title="Permalink to this headline">¶</a></h2>
+<p>Templates can be located in the <tt class="docutils literal"><span class="pre">data/templates</span></tt> folder of phpDocumentor, or a custom location of your chosing. All
+templates have in common that they are governed by a special configuration file called <tt class="docutils literal"><span class="pre">template.xml</span></tt>.</p>
+<p>template.xml
+phpdoc.xml</p>
+</div>
+<div class="section" id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h2>
+<p>routing</p>
+</div>
+<div class="section" id="writers">
+<h2>Writers<a class="headerlink" href="#writers" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="more-than-a-theme">
+<h2>More Than a Theme<a class="headerlink" href="#more-than-a-theme" title="Permalink to this headline">¶</a></h2>
+<p><tt class="xref doc docutils literal"><span class="pre">templates/structure</span></tt>
+<a class="reference internal" href="templates/twig.html"><em>Using twig</em></a>
+<a class="reference internal" href="templates/xsl.html"><em>Using XSLT</em></a></p>
+</div>
+<div class="section" id="related-topics">
+<h2>Related topics<a class="headerlink" href="#related-topics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../references/writers/index.html"><em>Writers</em></a>, for a complete list of available writers</li>
+</ul>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

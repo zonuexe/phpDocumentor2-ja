@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Ubiquitous Language Glossary &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../../index.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Ubiquitous Language Glossary</a><ul>
+<li><a class="reference internal" href="#basic-ddd-concepts">Basic (DDD) Concepts</a></li>
+<li><a class="reference internal" href="#application-concepts">Application Concepts</a></li>
+<li><a class="reference internal" href="#domain-concepts">Domain Concepts</a><ul>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+<li><a class="reference internal" href="#guides">Guides</a></li>
+<li><a class="reference internal" href="#api-documentation">API Documentation</a><ul>
+<li><a class="reference internal" href="#php">PHP</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#rendering">Rendering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../../index.html">Documentation</a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="ubiquitous-language-glossary">
+<h1>Ubiquitous Language Glossary<a class="headerlink" href="#ubiquitous-language-glossary" title="Permalink to this headline">¶</a></h1>
+<p>phpDocumentor covers a variety of concepts and as such has its own UBIQUITOUS LANGUAGE. In this glossary are the most
+important concepts in the UBIQUITOUS LANGUAGE explained.</p>
+<div class="section" id="basic-ddd-concepts">
+<h2>Basic (DDD) Concepts<a class="headerlink" href="#basic-ddd-concepts" title="Permalink to this headline">¶</a></h2>
+<p>phpDocumentor uses concepts of Domain Driven Design to assist in creating a recognizable architecture. In this list of
+terms we repeat some of the concepts introduced by the Domain Driven Design school of thought. It is however recommended
+to read up on the concept or read the book <a class="reference external" href="http://www.domaindrivendesign.org/books/evans_2003">Domain Driven Design by Eric Evans</a> to get a more thorough understanding of
+the concepts used here.</p>
+<dl class="docutils">
+<dt>Entity</dt>
+<dd>An ENTITY represents a real-world object that should be tracked or has an IDENTITY. An example of this, in the
+context of phpDocumentor, is the <tt class="docutils literal"><span class="pre">Documentation</span></tt> object: it needs to able to be retrieved and has a Version as
+IDENTITY.</dd>
+<dt>Value Object</dt>
+<dd>A VALUE OBJECT is, similar to an ENTITY, a representation of a real-world concept or object but one that is not
+tracked and does not have an IDENTITY of its own. An example of this, in the context of phpDocumentor, is the
+Template class: A Template is loaded from a template definition file but once loaded it has no IDENTITY of its
+own and will function as a source to the Renderer.</dd>
+</dl>
+<p>Service</p>
+<dl class="docutils">
+<dt>Factory</dt>
+<dd><p class="first">A FACTORY is a Design Pattern that describes a SERVICE which creates new ENTITIES or VALUE OBJECTS if they
+require business logic with their instantiation. ENTITIES and VALUE OBJECTS without additional business rules
+upon instantiation generally do not have FACTORIES associated with them but are instantiated directly.</p>
+<p>The Wikipedia definition of a FACTORY is:</p>
+<blockquote>
+<div>&gt; In object-oriented programming, a factory is an object for creating other objects – formally a factory is
+&gt; simply an object that returns an object from some method call, which is assumed to be &#8220;new&#8221;.[a] More broadly,
+&gt; a subroutine that returns a &#8220;new&#8221; object may be referred to as a &#8220;factory&#8221;, as in factory method or factory
+&gt; function. This is a basic concept in OOP, and forms the basis for a number of related software design
+&gt; patterns.</div></blockquote>
+<p>In phpDocumentor several FACTORIES are in use, both FACTORY SERVICES (Objects that create VALUE OBJECTS and
+ENTITIES) as well as FACTORY METHODS (public static methods in a VALUE OBJECT or ENTITY that creates an object of
+that class).</p>
+<p class="last">For more information on the FACTORY Design Pattern: please consult the Wikipedia page, the book Design Patterns by
+the Gang of Four or the book <a class="reference external" href="http://www.domaindrivendesign.org/books/evans_2003">Domain Driven Design by Eric Evans</a>.</p>
+</dd>
+<dt>Repository</dt>
+<dd>A REPOSITORY is a Design Pattern that describes a SERVICE that is responsible for persisting and retrieving
+ENTITIES.</dd>
+</dl>
+</div>
+<div class="section" id="application-concepts">
+<h2>Application Concepts<a class="headerlink" href="#application-concepts" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Dependency Injection Container (DIC)</dt>
+<dd><p class="first">A Dependency Injection Container is a system that tracks all instantiated SERVICES and know how to instantiate new
+SERVICES that are based on those already instantiated SERVICES.</p>
+<p>The Wikipedia definition of Dependency Injection is:</p>
+<blockquote>
+<div>&gt; Dependency injection is a software design pattern in which one or more dependencies (or services) are
+&gt; injected, or passed by reference, into a dependent object (or client) and are made part of the client&#8217;s
+&gt; state. The pattern separates the creation of a client&#8217;s dependencies from its own behavior, which allows
+&gt; program designs to be loosely coupled and to follow the dependency inversion and single responsibility
+&gt; principles. It directly contrasts with the service locator pattern, which allows clients to know about the
+&gt; system they use to find dependencies.</div></blockquote>
+<p>phpDocumentor uses <a class="reference external" href="http://www.php-di.org">PHP-DI</a> as its Dependency Injection Container. This container supports auto-wiring and because of
+that it is not necessary to define all SERVICES (contrary to other containers). <a class="reference external" href="http://www.php-di.org">PHP-DI</a> uses the type hints on
+constructor parameters to determine which SERVICES to fetch and inject.</p>
+<p class="last">It is not possible for <a class="reference external" href="http://www.php-di.org">PHP-DI</a> to determine which SERVICES to use as dependency if a constructor has an argument
+that is typed with an interface or an untyped parameter. In these cases PHP-DI needs to be told which dependencies
+or options to inject using a Module.</p>
+</dd>
+<dt>Module Definition</dt>
+<dd><p class="first">Sometimes <a class="reference external" href="http://www.php-di.org">PHP-DI</a> (the Dependency Injection Container, see above) is unable to determine which values or SERVICES
+to inject when constructing a new SERVICES. This happens, for example, when a constructor has untyped parameters or
+is typed using an interface.</p>
+<p class="last">In cases like this <a class="reference external" href="http://www.php-di.org">PHP-DI</a> needs to be helped a hand by using a Module Definition. This is a file that returns an
+array that maps SERVICES, or interfaces thereof, onto a SERVICE Definition. Please view the documentation on
+defining injections at the <a class="reference external" href="http://www.php-di.org">PHP-DI</a> homepage for more information on how to declare these arrays:
+<a class="reference external" href="http://php-di.org/doc/definition.html">http://php-di.org/doc/definition.html</a>.</p>
+</dd>
+</dl>
+<p>Command</p>
+<p>Command Handler</p>
+<p>Command Bus</p>
+</div>
+<div class="section" id="domain-concepts">
+<h2>Domain Concepts<a class="headerlink" href="#domain-concepts" title="Permalink to this headline">¶</a></h2>
+<p>Definition</p>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt>Project</dt>
+<dd><p class="first">A Project is a series of Documentation spanning multiple versions where each version refers to the same undertaking.
+Examples of a project can be a Software Project, such as <a class="reference external" href="http://www.phpdoc.org/">phpDocumentor</a>, or the authoring of a Book or standalone
+reference, such as <a class="reference external" href="https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md">PSR-5</a>.</p>
+<p class="last">phpDocumentor does not actively track a Project but instead assumes that all Versions that are defined in the
+configuration belong to the same project.</p>
+</dd>
+<dt>Version</dt>
+<dd><p class="first">A Version of a Project represents a unique series of files that can be transformed into a set of Documentation. It
+is not necessary for the locations of Document Groups to be on the same Data Source as sometimes manuals and source
+files are located on different locations.</p>
+<p class="last">&gt; For example: the source files used to generate an Api Reference may be in a different VCS repository than the
+&gt; source files for the User Manual for the same Version</p>
+</dd>
+</dl>
+<p>Documentation</p>
+<dl class="docutils">
+<dt>Document Group</dt>
+<dd>A set of Documentation can include several multiple Guides, Api References and similar objects. Such an object is
+called a Document Group as it combines into a logical grouping and offers the option to add new Document Groups
+in the future should the need arise.</dd>
+</dl>
+</div>
+<div class="section" id="guides">
+<h3>Guides<a class="headerlink" href="#guides" title="Permalink to this headline">¶</a></h3>
+<p>Guide</p>
+<p>Document</p>
+<p>Chapter</p>
+</div>
+<div class="section" id="api-documentation">
+<h3>API Documentation<a class="headerlink" href="#api-documentation" title="Permalink to this headline">¶</a></h3>
+<p>Api Reference</p>
+<p>Fqsen</p>
+<p>Element</p>
+<div class="section" id="php">
+<h4>PHP<a class="headerlink" href="#php" title="Permalink to this headline">¶</a></h4>
+<p>Visibility</p>
+<p>Namespace</p>
+<p>Constant</p>
+<p>Function</p>
+<p>Class</p>
+<p>Interface</p>
+<p>Trait</p>
+<p>Class constant</p>
+<p>Property</p>
+<p>Method</p>
+<p>DocBlock</p>
+<p>Summary</p>
+<p>Description</p>
+<p>Tag</p>
+</div>
+</div>
+<div class="section" id="rendering">
+<h3>Rendering<a class="headerlink" href="#rendering" title="Permalink to this headline">¶</a></h3>
+<p>View</p>
+<p>Renderer</p>
+<p>RenderAction</p>
+<p>Template</p>
+</div>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

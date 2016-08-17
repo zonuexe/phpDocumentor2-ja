@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Creating your own template using Twig &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../index.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Creating your own template using Twig</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#create-your-template-definition">Create your template definition</a></li>
+<li><a class="reference internal" href="#defining-transformations">Defining transformations</a></li>
+<li><a class="reference internal" href="#writing-template-files">Writing template files</a></li>
+<li><a class="reference internal" href="#generating-a-series-of-output-files">Generating a series of output files</a></li>
+<li><a class="reference internal" href="#read-more">Read more</a></li>
+</ul>
+</li>
+</ul>
+
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html">Documentation</a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="creating-your-own-template-using-twig">
+<h1>Creating your own template using Twig<a class="headerlink" href="#creating-your-own-template-using-twig" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>In this tutorial we will guide you on how to build templates in phpDocumentor using the Twig templating engine.</p>
+<p>phpDocumentor&#8217;s templating system is powerful and flexible enough to produce any kind of output or even multiple types
+of output combined into one template. During this tutorial we will guide you on how to create a simple template that will
+produce HTML files that you can serve from your website.</p>
+<p>While building a template there are three important steps:</p>
+<ol class="arabic simple">
+<li>Creating a template definition file.</li>
+<li>Defining all <a class="reference internal" href="../glossary.html#term-transformations"><em class="xref std std-term">transformations</em></a> that your template must do.</li>
+<li>Writing your Twig templates and providing assets.</li>
+</ol>
+<p>Each of these steps is covered in the following subchapters, so if you want to make your own template you can just read
+on and follow along with the text.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">This tutorial assumes that you have worked with Twig before and know how it works. If you are unclear on how
+some things work, please consult the Twig documentation.</p>
+</div>
+</div>
+<div class="section" id="create-your-template-definition">
+<h2>Create your template definition<a class="headerlink" href="#create-your-template-definition" title="Permalink to this headline">¶</a></h2>
+<p>Simply put, a template is a combination of <a class="reference internal" href="../glossary.html#term-transformations"><em class="xref std std-term">transformations</em></a> that will read the data that phpDocumentor has
+aggregated and transform that into the output that you desire, such as an HTML page.</p>
+<p>In order for phpDocumentor to know what to do there is always a template definition file present, called
+<tt class="docutils literal"><span class="pre">template.xml</span></tt>, in the root of your template. This file contains some meta-data and a series of transformation
+definitions that are executed sequentially.</p>
+<p>Let&#8217;s look at a very simple example:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="nt">&lt;template&gt;</span>
+     <span class="nt">&lt;author&gt;</span>Mike van Riel<span class="nt">&lt;/author&gt;</span>
+     <span class="nt">&lt;email&gt;</span>me@mikevanriel.com<span class="nt">&lt;/email&gt;</span>
+     <span class="nt">&lt;description&gt;</span>This is a description that will inform the user what to expect from your template<span class="nt">&lt;/description&gt;</span>
+     <span class="nt">&lt;version&gt;</span>1.0.0<span class="nt">&lt;/version&gt;</span>
+     <span class="nt">&lt;transformations&gt;</span>
+         <span class="nt">&lt;transformation</span> <span class="na">writer=</span><span class="s">&quot;FileIo&quot;</span> <span class="na">query=</span><span class="s">&quot;copy&quot;</span> <span class="na">source=</span><span class="s">&quot;templates/responsive/css&quot;</span> <span class="na">artifact=</span><span class="s">&quot;css&quot;</span><span class="nt">/&gt;</span>
+         <span class="nt">&lt;transformation</span> <span class="na">writer=</span><span class="s">&quot;twig&quot;</span> <span class="na">source=</span><span class="s">&quot;templates/responsive-twig/index.html.twig&quot;</span> <span class="na">artifact=</span><span class="s">&quot;index.html&quot;</span><span class="nt">/&gt;</span>
+     <span class="nt">&lt;/transformations&gt;</span>
+ <span class="nt">&lt;/template&gt;</span>
+</pre></div>
+</div>
+<p>The meta-data of this template is rather straight-forward but we will shortly describe them here for context:</p>
+<ol class="arabic simple">
+<li>author - defines the name of the author of this template. This field may be repeated if there are several authors.</li>
+<li>email - email address of the maintainer for this template (only one is expected).</li>
+<li>description - a short piece of text that will inform the person who wants to use this template what to expect.</li>
+<li>version - a version number according to Semantic Versioning that will describe what the current version of the
+template is.</li>
+</ol>
+<p>The transformations collection is far more interesting and the next chapter will go into
+much more detail on how transformations work.</p>
+</div>
+<div class="section" id="defining-transformations">
+<h2>Defining transformations<a class="headerlink" href="#defining-transformations" title="Permalink to this headline">¶</a></h2>
+<p>The previous chapter shows an example of what a simple template could look like. There you could see
+a <tt class="docutils literal"><span class="pre">transformations</span></tt> element with two transformations. Let&#8217;s continue from there and see what a transformation is and
+how to create one.</p>
+<p>The definition of a transformation is an action that transforms one type of data to another. Practically this means
+that one transformation can copy a file, generate an HTML file from data aggregated by phpDocumentor, generate a graph
+from data in phpDocumentor and other equal tasks. As long as data is input and data is output then you can do it with
+a transformation.</p>
+<p>Let&#8217;s look at the transformations definition from the previous chapter again:</p>
+<div class="highlight-xml"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+
+<span class="nt">&lt;template&gt;</span>
+    ...
+    <span class="nt">&lt;transformations&gt;</span>
+        <span class="nt">&lt;transformation</span> <span class="na">writer=</span><span class="s">&quot;FileIo&quot;</span> <span class="na">query=</span><span class="s">&quot;copy&quot;</span> <span class="na">source=</span><span class="s">&quot;templates/responsive/css&quot;</span> <span class="na">artifact=</span><span class="s">&quot;css&quot;</span><span class="nt">/&gt;</span>
+        <span class="nt">&lt;transformation</span> <span class="na">writer=</span><span class="s">&quot;twig&quot;</span> <span class="na">source=</span><span class="s">&quot;templates/responsive-twig/index.html.twig&quot;</span> <span class="na">artifact=</span><span class="s">&quot;index.html&quot;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/transformations&gt;</span>
+<span class="nt">&lt;/template&gt;</span>
+</pre></div>
+</div>
+<p>In this definition we can spot two transformations with each several attributes. It is these attributes that influence
+the behaviour of said transformations.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Base folders</p>
+<p><strong>Source folder</strong></p>
+<p>Although the base location of the source folder may differ per writer it is a common pattern that it matches the
+templates folder of phpDocumentor. This has a historical reason.</p>
+<p>phpDocumentor started out with supporting only XSL as a templating engine but XSL can only extend files that it can
+physically find in the template. You cannot tell it to scan a separate folder. So for XSL to be able to extend
+existing templates all templates are being put inside the templates folder of phpDocumentor, even your own custom
+template when you invoke it.</p>
+<p><strong>Artifact folder</strong></p>
+<p class="last">As with the source folder, the artifact folder may differ per writer. But a common pattern is that this location is
+relative to the target location that you provided phpDocumentor using the <tt class="docutils literal"><span class="pre">-t</span></tt> or <tt class="docutils literal"><span class="pre">--target</span></tt> option.</p>
+</div>
+<p>If we look closely at the first transformation then we can distinguish four properties:</p>
+<ol class="arabic simple">
+<li>Writer - reference to a specialized class that will actually perform the transformation.</li>
+<li>Query - an attribute which allows you to guide the transformation or limit it to a subset of the provided data.</li>
+<li>Source - reference to the input. This can be a template file, origin location (in case of a copying
+action) or any other data location.</li>
+<li>Artifact - the destination folder, file or object where the output for this transformation is written to.</li>
+</ol>
+<p>So. What does this transformation do?</p>
+<blockquote>
+<div>It uses the &#8220;FileIO&#8221; writer, which is used for disk operations, to &#8220;copy&#8221; the contents of the
+&#8220;templates/responsive/css&#8221; source folder to the &#8220;css&#8221; destination folder.</div></blockquote>
+<p>How the query, source and artifact attribute functions exactly differs per Writer, but this is the general use for them.</p>
+<p>As another excercise, let&#8217;s look at the second transformation in our example.</p>
+<blockquote>
+<div>This transformation uses the &#8220;Twig&#8221; writer, which is used to generate physical text-based files from Twig template
+files, to create the &#8220;index.html&#8221; artifact in your target folder using the &#8220;index.html.twig&#8221; template in the
+&#8220;templates/responsive-twig&#8221; folder of phpDocumentor&#8217;s data folder.</div></blockquote>
+<p>What you might notice is that we do not have a query attribute in this transformation. Only the writer attribute is
+required and all others can be omitted when necessary. This does not mean that the writer cannot use this attribute, it
+is just not there because it is not used.</p>
+<p>For example: the Twig writer can use the query attribute to only sent a bit of the aggregated data to the twig template.</p>
+</div>
+<div class="section" id="writing-template-files">
+<h2>Writing template files<a class="headerlink" href="#writing-template-files" title="Permalink to this headline">¶</a></h2>
+<p>Hopefully by now you know how to create a template, which meta-data to add to the template and
+how to define transformation steps.</p>
+<p>This is just one side of the coin. Now we have to create the actual Twig template files which we can use to
+generate HTML documents. Please note that this is a tutorial, we won&#8217;t cover every bit in detail. If you want to know
+in-depth what options are supported, please read the guide and browse through existing templates.</p>
+</div>
+<div class="section" id="generating-a-series-of-output-files">
+<h2>Generating a series of output files<a class="headerlink" href="#generating-a-series-of-output-files" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="read-more">
+<h2>Read more<a class="headerlink" href="#read-more" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../guides/templates.html"><em>Writing your own Template</em></a></li>
+<li><a class="reference internal" href="../references/writers/index.html"><em>Writers</em></a></li>
+</ul>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

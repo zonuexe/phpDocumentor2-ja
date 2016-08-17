@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Running phpDocumentor &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../index.html"/>
+        <link rel="up" title="Guides" href="index.html"/>
+        <link rel="next" title="Project Integration" href="project-integration.html"/>
+        <link rel="prev" title="Inheritance" href="inheritance.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Running phpDocumentor</a><ul>
+<li><a class="reference internal" href="#quickstart">Quickstart</a></li>
+<li><a class="reference internal" href="#configuration">Configuration</a></li>
+<li><a class="reference internal" href="#influencing-the-list-of-project-files">Influencing the List of Project Files</a></li>
+<li><a class="reference internal" href="#customizing-the-look-and-feel">Customizing the Look and Feel</a></li>
+<li><a class="reference internal" href="#determining-content">Determining Content</a></li>
+<li><a class="reference internal" href="#markers">Markers</a></li>
+</ul>
+</li>
+</ul>
+
+        <h4>Previous topic</h4>
+
+        <p class="topless"><a href="inheritance.html"
+                              title="previous chapter">Inheritance</a></p>
+        <h4>Next topic</h4>
+
+        <p class="topless"><a href="project-integration.html"
+                              title="next chapter">Project Integration</a></p>
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="project-integration.html" title="Project Integration" accesskey="N">
+                next
+            </a> |
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="inheritance.html" title="Inheritance" accesskey="P">
+                previous
+            </a> |
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html">Documentation</a>  &raquo;
+        </li>
+        <li>
+            <a href="index.html" accesskey="U">
+                Guides
+            </a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="running-phpdocumentor">
+<h1>Running phpDocumentor<a class="headerlink" href="#running-phpdocumentor" title="Permalink to this headline">¶</a></h1>
+<p>In this guide we are going to explain how to generate documentation for your application and how to tune it to your
+liking. phpDocumentor supports a wide range of options related to the generation of documentation that can help you.</p>
+<p>phpDocumentor is a command-line application that supports several actions, called <em class="xref std std-term">commands</em>, with which you can
+generate your documentation but also, for example, display a list of installed templates. In this guide we are only
+going to discuss the default command: <tt class="docutils literal"><span class="pre">project:run</span></tt>, you can find a list of all supported commands in the
+<a class="reference internal" href="../references/commands/index.html"><em>command reference</em></a></p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>The <a class="reference internal" href="../references/commands/project_run.html"><em>project:run</em></a> command is default to phpDocumentor, this means that it will be
+executed when you omit the command name once you run phpDocumentor.</p>
+<p>The following command-line actions are aliases of eachother:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ phpdoc
+$ phpdoc run
+$ phpdoc project:run
+</pre></div>
+</div>
+<p class="last">Each of the above calls does exactly the same.</p>
+</div>
+<div class="section" id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s start with the minimum that you need in order to run phpDocumentor. In the next few chapters we will be adding
+more and more options but you can safely ignore those and just use what we describe in this chapter.</p>
+<p>When running phpDocumentor there are three command-line options that are essential:</p>
+<ol class="arabic simple">
+<li><tt class="docutils literal"><span class="pre">-d</span></tt>, specifies the directory, or directories, of your project that you want to document.</li>
+<li><tt class="docutils literal"><span class="pre">-f</span></tt>, specifies a specific file, or files, in your project that you want to document.</li>
+<li><tt class="docutils literal"><span class="pre">-t</span></tt>, specifies the location where your documentation will be written (also called &#8216;target folder&#8217;).</li>
+</ol>
+<p>The above options are all you need to generate your documentation as demonstrated in this example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ phpdoc -d path/to/my/project -f path/to/an/additional/file -t path/to/my/output/folder
+</pre></div>
+</div>
+<p>For phpDocumentor to work you must specify at least a directory or file to scan, or have this information in a
+<a class="reference internal" href="../references/configuration.html"><em>configuration</em></a> file. phpDocumentor won&#8217;t assume that you want to document the
+directory from where you run the command.</p>
+<p>The target folder is optional but if you omit it then your documentation will be generated in a subfolder, of
+your current working directory, called &#8216;output&#8217;.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">phpDocumentor assumes that your project&#8217;s files are encoded using <strong>UTF-8</strong>. If your encoding differs you can use the
+<tt class="docutils literal"><span class="pre">--encoding</span></tt> command line option to instruct phpDocumentor to expect that. We have tried to auto-detect your
+encoding in previous versions but in the end it caused more encoding issues than it solved.</p>
+</div>
+</div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Before we continue to discuss the other options that phpDocumentor offers we would like to mention that phpDocumentor
+supports the use of a <a class="reference internal" href="../references/configuration.html"><em>configuration</em></a> file. All you need to do is add a file called
+&#8216;phpdoc.dist.xml&#8217; to the root of your project, add your options to it and then invoke the <tt class="docutils literal"><span class="pre">phpdoc</span></tt> command without
+arguments.</p>
+<p>phpDocumentor will look in the current working directory for the configuration file and use its contents to determine
+options such as where your project files are and where to output your documentation.</p>
+<p>You can even override the settings in the configuration on a per user basis using another file called &#8216;phpdoc.xml&#8217;.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">When present, the file &#8216;phpdoc.xml&#8217; is used instead of &#8216;phpdoc.dist.xml&#8217; and thus does not supplement it.</p>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">It is recommended to add the &#8216;phpdoc.xml&#8217; to your version control&#8217;s ignore list if you intend on using it. This way
+you can have a canonical configuration in the &#8216;phpdoc.dist.xml&#8217; file and allow each individual user to override it.</p>
+</div>
+<p>And last but not least, you can even specify an alternate location for your &#8216;phpdoc.xml&#8217; using the &#8216;&#8211;config&#8217;
+command-line option.</p>
+<p>For more information on the options and format supported by the configuration it is best to consult the
+<a class="reference internal" href="../references/configuration.html"><em>configuration reference</em></a>.</p>
+</div>
+<div class="section" id="influencing-the-list-of-project-files">
+<h2>Influencing the List of Project Files<a class="headerlink" href="#influencing-the-list-of-project-files" title="Permalink to this headline">¶</a></h2>
+<p>As mentioned in the Quickstart above you can select which directories and files to document using the <tt class="docutils literal"><span class="pre">-d</span></tt> (for
+directories and their files) or the <tt class="docutils literal"><span class="pre">-f</span></tt> (for just single files). You can even provide those options multiple times
+if you need multiple files or directories.</p>
+<p>But did you know that you can use the <tt class="docutils literal"><span class="pre">--ignore</span></tt> option to specify which files or directory to ignore? This option
+supports wildcards to indicate that there may be any number of undetermined characters in the path. So the option
+<tt class="docutils literal"><span class="pre">--ignore</span> <span class="pre">&quot;*/tests/*,tests/*&quot;</span></tt> will ignore any files in a subdirectory &#8216;tests&#8217; or if &#8216;tests&#8217; is a subdirectory
+somewhere down the tree.</p>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<p class="last">Enclose any value for an option that provides a wildcard with double quotes to prevent your command line from
+interpreting them.</p>
+</div>
+<p>When you want to provide a relative path, keep in mind that this is relative to the <em class="xref std std-term">Project Root Folder</em>.
+The project&#8217;s root folder is the first folder that the provided folders have in common, so for
+<a href="#id1"><span class="problematic" id="id2">``</span></a>-d &#8220;src/phpDocumentor,src/Cilex&#8221; this is the directory &#8220;src&#8221; and not the current working directory. When in doubt,
+check the output of phpDocumentor, it mentions the project&#8217;s root folder after all files are collected.</p>
+<p>By default phpDocumentor will ignore hidden files and will not follow symlinks. This will prevent unwanted documentables
+and loops in paths. Should you want to document hidden files you can do so by supplying the option <tt class="docutils literal"><span class="pre">--hidden=off</span></tt>,
+for traversing symlinks you can provide the option <tt class="docutils literal"><span class="pre">--ignore-symlinks=off</span></tt>. Easy!</p>
+</div>
+<div class="section" id="customizing-the-look-and-feel">
+<h2>Customizing the Look and Feel<a class="headerlink" href="#customizing-the-look-and-feel" title="Permalink to this headline">¶</a></h2>
+<p>phpDocumentor offers a wide range of options for changing the look and feel of your documentation but almost all of
+them are captured in a template (believe me, you do not want to configure this on the command-line). So the easiest way
+is to specify a template using the option <tt class="docutils literal"><span class="pre">--template</span></tt>.</p>
+<p>It is possible to generate output using two templates at once. This can be convenient for generating HTML documentation
+and Checkstyle XML output at the same time. Generating output for two templates can be accomplished by providing the
+<tt class="docutils literal"><span class="pre">--template</span></tt> option twice or by using a comma-separated list:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ phpdoc --template=&quot;clean&quot; --template=&quot;checkstyle&quot; -d .
+$ phpdoc --template=&quot;clean,checkstyle&quot; -d .
+</pre></div>
+</div>
+<p>In addition to the options offered by the templates themselves, there are two command-line options to influence the
+output of your documentation:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">--defaultpackagename</span></tt></dt>
+<dd>This option changes the name of your &#8216;default&#8217;, or nameless, package to that of your preference. This way you can,
+for example, change the default package name to the name of your application.</dd>
+<dt><tt class="docutils literal"><span class="pre">--title</span></tt></dt>
+<dd>This option will change the title in your browser&#8217;s titlebar and, for some templates, the title text of the template
+itself. This is a small convenience to personalize the template for your application.</dd>
+</dl>
+<p>Using a configuration file you can apply more customization to the look and feel of the documentation, please see the
+chapter on <a class="reference internal" href="templates.html"><em>Writing your own Template</em></a> for more information on this subject.</p>
+</div>
+<div class="section" id="determining-content">
+<h2>Determining Content<a class="headerlink" href="#determining-content" title="Permalink to this headline">¶</a></h2>
+<p>By default phpDocumentor documents all public and protected elements barring those with the tag
+<a class="reference internal" href="../references/phpdoc/tags/internal.html"><em>&#64;internal</em></a> or <a class="reference internal" href="../references/phpdoc/tags/ignore.html"><em>&#64;ignore</em></a>. All tags of an element feature in
+the documentation, either by providing functionality or in the list of meta-data for that element.
+It is possible to influence this behaviour using a series of options that affect the amount of information that is
+provided in the documentation.</p>
+<p>To change which elements are shown in the documentation based on their visibility you can use the <tt class="docutils literal"><span class="pre">--visibility</span></tt>
+option. This option accepts a comma-separated list of the visibilities supported by PHP (public, protected or private),
+the value &#8216;api&#8217; to only document items that have the <a class="reference internal" href="../references/phpdoc/tags/api.html"><em>&#64;api</em></a> tag associated with them or
+the value &#8216;internal&#8217; to show all elements including those marked with the <a class="reference internal" href="../references/phpdoc/tags/internal.html"><em>&#64;internal</em></a> tag.
+This latter option (<tt class="docutils literal"><span class="pre">--visibility=internal</span></tt>) is deprecates the <tt class="docutils literal"><span class="pre">--parseprivate</span></tt> option as it is superseded by this
+option.</p>
+<p>Now that you know how to change the list of elements that can be displayed, you can even influence which tags are shown
+in your documentation. Contrary to phpDocumentor 1, version 2 will now display all tags by default; if you want
+to omit specific tags from the documentation you can do that using the <tt class="docutils literal"><span class="pre">--ignore-tags</span></tt> option. By providing a
+comma-separated list of tag names (case-sensitive) phpDocumentor can be instructed to omit those tags, and their
+contents, from the documentation.</p>
+</div>
+<div class="section" id="markers">
+<h2>Markers<a class="headerlink" href="#markers" title="Permalink to this headline">¶</a></h2>
+<p>phpDocumentor is mostly about DocBlocks and processing inline documentation. However it will also collect
+<em class="xref std std-term">markers</em>.</p>
+<p>In short, a Marker is a single-line inline comment that starts with a single, identifying, word and has a description.
+Let&#8217;s take a look at an example to make this less abstract:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>// TODO: Move this code to another location
+</pre></div>
+</div>
+<p>As you can see here, we indicate that a specific piece of code on the following line should be moved. phpDocumentor
+collects these markers and generates a report that shows which and where these markers are placed. In the example above
+you may notice that there is a colon (<tt class="docutils literal"><span class="pre">:</span></tt>) after the marker text; this is optional and will be ignored when present.</p>
+<p>By default phpDocumentor only collects markers that start with TODO or FIXME, as these are the most common, but you can
+provide an alternative list using the <tt class="docutils literal"><span class="pre">--markers</span></tt> command line option.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">TODO markers also get a special treatment; phpDocumentor generates a report detailing which todo items are in your
+code and uses both the <a class="reference internal" href="../references/phpdoc/tags/todo.html"><em>&#64;todo</em></a> tag and the TODO marker to compile this list.</p>
+</div>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

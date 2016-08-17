@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Your First Set of Documentation &mdash; phpDocumentor</title>
+
+    <link rel="stylesheet" href="../_static/default.css" type="text/css"/>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css"/>
+    <!--<link rel="stylesheet" href="../_static/configurationblock.css" type="text/css"/>-->
+
+    <link href="../_static/css/template.css" rel="stylesheet" media="all">
+    <style>
+        h1 {
+            font-family: serif;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            color: #333;
+        }
+        h2:first-of-type {
+            margin-top: 25px;
+        }
+        h2 {
+            font-family: serif;
+            color: #333;
+            border: none;
+            font-style: italic;
+            margin-top: 15px;
+        }
+        .well table.docutils {
+            width: 100%;
+        }
+    </style>
+
+    <script src="../_static/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script src="../_static/js/jquery-ui-1.8.2.custom.min.js" type="text/javascript"></script>
+    <script src="../_static/js/bootstrap.js" type="text/javascript"></script>
+    <script src="../_static/js/prettify/prettify.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        function equalHeight(group) {
+            var tallest = 0;
+
+            group.each(function() {
+                var thisHeight = $(this).height();
+                if(thisHeight > tallest) {
+                    tallest = thisHeight;
+                }
+            });
+
+            group.height(tallest);
+        }
+
+        $(document).ready(function() {
+            $('.contents .row').each(function() {
+                equalHeight(jQuery(this).find('.well'));
+            });
+
+            // remove the classes added by Sphinx; the container class is
+            // used in Twitter bootstrap and this collides
+            $('.container .container').removeClass('container');
+        });
+    </script>
+
+    <link rel="shortcut icon" href="http://demo.phpdoc.org/Responsive/img/favicon.ico">
+    <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
+        <link rel="top" title="phpDocumentor" href="../index.html"/>
+        <link rel="up" title="Getting started" href="index.html"/>
+        <link rel="next" title="Changing the Look and Feel" href="changing-the-look-and-feel.html"/>
+        <link rel="prev" title="Installing" href="installing.html"/> 
+</head>
+<body>
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="/">phpDocumentor</a>
+
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li class="dropdown">
+                        <a href="#documentation" class="dropdown-toggle" data-toggle="dropdown"> Documentation<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/docs"><i class="icon-th"></i> phpDocumentor 2</a></li>
+                            <li><a href="http://manual.phpdoc.org"><i class="icon-th"></i> phpDocumentor 1</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#demo" class="dropdown-toggle" data-toggle="dropdown"> Demo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="http://demo.phpdoc.org/Responsive/"><i class="icon-list-alt"></i> Responsive</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/templates"><i class="icon-list-alt"></i> Templates</a></li>
+                    <li><a href="/contact"><i class="icon-list-alt"></i> Contact</a></li>
+                    <li><a href="/about"><i class="icon-list-alt"></i> About</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="go_to_top"><a href="#___" style="color: inherit">Back to top <i class="icon-upload icon-white"></i></a></div>
+</div>
+<div id="___" class="container">
+    <noscript>
+        <div class="alert alert-warning">
+            Javascript is disabled; several features are only available if Javascript is enabled.
+        </div>
+    </noscript>
+
+    <div class="row">
+        <div class="span3">
+        <h3><a href="../index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Your First Set of Documentation</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#writing-a-docblock">Writing a DocBlock</a><ul>
+<li><a class="reference internal" href="#which-elements-can-be-documented">Which elements can be documented?</a></li>
+<li><a class="reference internal" href="#what-does-a-docblock-look-like">What does a DocBlock look like?</a></li>
+<li><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-phpdocumentor">Running phpDocumentor</a></li>
+</ul>
+</li>
+</ul>
+
+        <h4>Previous topic</h4>
+
+        <p class="topless"><a href="installing.html"
+                              title="previous chapter">Installing</a></p>
+        <h4>Next topic</h4>
+
+        <p class="topless"><a href="changing-the-look-and-feel.html"
+                              title="next chapter">Changing the Look and Feel</a></p>
+        <div id="searchbox" style="display: none">
+            <h3>Search</h3>
+
+            <form class="search" action="../search.html" method="get">
+                <input type="text" name="q" size="18"/>
+                <input type="submit" value="Go"/>
+                <input type="hidden" name="check_keywords" value="yes"/>
+                <input type="hidden" name="area" value="default"/>
+            </form>
+        </div>
+        <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+        <div class="span9 contents">
+            <div class="breadcrumb">
+<div class="related">
+    <h3>Navigation</h3>
+    <ul>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="../genindex.html" title="General Index" accesskey="I">
+                index
+            </a>
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="changing-the-look-and-feel.html" title="Changing the Look and Feel" accesskey="N">
+                next
+            </a> |
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="installing.html" title="Installing" accesskey="P">
+                previous
+            </a> |
+        </li>
+        <li>
+            <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
+        </li>
+        <li>
+            <a href="../index.html">Documentation</a>  &raquo;
+        </li>
+        <li>
+            <a href="index.html" accesskey="U">
+                Getting started
+            </a>  &raquo;
+        </li> 
+    </ul>
+</div>
+            </div>
+
+            
+            <div class="well">
+            
+
+            
+  <div class="section" id="your-first-set-of-documentation">
+<h1>Your First Set of Documentation<a class="headerlink" href="#your-first-set-of-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The goal of this tutorial is to introduce you in writing and subsequently generating effective documentation with
+phpDocumentor.</p>
+</div>
+<div class="section" id="writing-a-docblock">
+<h2>Writing a DocBlock<a class="headerlink" href="#writing-a-docblock" title="Permalink to this headline">¶</a></h2>
+<p>A DocBlock is a piece of inline <em>documentation</em> in your source code that informs you what a class, method or other
+<a class="reference internal" href="../glossary.html#term-structural-element"><em class="xref std std-term">Structural Element</em></a> its function is.</p>
+<div class="section" id="which-elements-can-be-documented">
+<h3>Which elements can be documented?<a class="headerlink" href="#which-elements-can-be-documented" title="Permalink to this headline">¶</a></h3>
+<p>Before we discuss what a DocBlock looks like, let&#8217;s first zoom into what you can document with them. phpDocumentor
+follows the PHPDoc definition and recognizes the following <a class="reference internal" href="../glossary.html#term-structural-elements"><em class="xref std std-term">Structural Elements</em></a>:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://php.net/manual/en/language.functions.php">Function</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.constants.php">Constant</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.oop5.basic.php">Class</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.oop5.interfaces.php">Interface</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.oop5.traits.php">Trait</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.oop5.constants.php">Class constant</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.oop5.properties.php">Property</a></li>
+<li><a class="reference external" href="http://php.net/manual/en/language.oop5.basic.php">Method</a></li>
+</ul>
+<p>In addition to the above the PHPDoc standard also supports <a class="reference internal" href="../glossary.html#term-docblocks"><em class="xref std std-term">DocBlocks</em></a> for <em>Files</em> and include/require statements,
+even though PHP itself does not know this concept.</p>
+<p>Each of these elements can have exactly one DocBlock associated with it, which directly precedes it. No code or
+comments may be between a DocBlock and the start of an element&#8217;s definition.</p>
+</div>
+<div class="section" id="what-does-a-docblock-look-like">
+<h3>What does a DocBlock look like?<a class="headerlink" href="#what-does-a-docblock-look-like" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../glossary.html#term-docblocks"><em class="xref std std-term">DocBlocks</em></a> are always enclosed in a comment-type, called <a class="reference internal" href="../glossary.html#term-doccomment"><em class="xref std std-term">DocComment</em></a>, that starts with <tt class="docutils literal"><span class="pre">/**</span></tt> and ends
+with <tt class="docutils literal"><span class="pre">*/</span></tt>. Each line in between the opening and closing statement should start with an asterisk (<tt class="docutils literal"><span class="pre">*</span></tt>). Every
+<a class="reference internal" href="../glossary.html#term-docblock"><em class="xref std std-term">DocBlock</em></a> precedes exactly one <a class="reference internal" href="../glossary.html#term-structural-element"><em class="xref std std-term">Structural Element</em></a> and all contents of the <a class="reference internal" href="../glossary.html#term-docblock"><em class="xref std std-term">DocBlock</em></a> apply to that
+associated element.</p>
+<p>For example:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * This is a DocBlock.</span>
+<span class="sd"> */</span>
+<span class="k">function</span> <span class="nf">associatedFunction</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><strong>File-level DocBlocks</strong></p>
+<p>Quite often projects will want to document the license or function for an entire file instead of a single element.
+This can be accomplished by having a DocBlock as the first element encountered in a file. It is important to note that
+whenever another <a class="reference internal" href="../glossary.html#term-structural-element"><em class="xref std std-term">Structural Element</em></a> directly follows the DocBlock that it is no longer recognized as a
+File-level DocBlock but belonging to the subsequent element.</p>
+<p>The following DocBlock is a File-level DocBlock:</p>
+<div class="highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * I belong to a file</span>
+<span class="sd"> */</span>
+
+<span class="sd">/**</span>
+<span class="sd"> * I belong to a class</span>
+<span class="sd"> */</span>
+<span class="k">class</span> <span class="nc">Def</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>However in the following example the DocBlock belongs to the class:</p>
+<div class="last highlight-php"><div class="highlight"><pre><span></span><span class="cp">&lt;?php</span>
+<span class="sd">/**</span>
+<span class="sd"> * I belong to a class</span>
+<span class="sd"> */</span>
+
+<span class="k">class</span> <span class="nc">Def</span>
+<span class="p">{</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<p>DocBlocks are divided into the following three parts. Each of these parts is optional, except that a <a class="reference internal" href="../glossary.html#term-description"><em class="xref std std-term">Description</em></a>
+may not exist without a <a class="reference internal" href="../glossary.html#term-summary"><em class="xref std std-term">Summary</em></a>.</p>
+<dl class="docutils">
+<dt><a class="reference internal" href="../glossary.html#term-summary"><em class="xref std std-term">Summary</em></a></dt>
+<dd><p class="first">Sometimes called a short description, provides a brief introduction into the function of the associated element.
+A Summary ends
+in one of these situations:</p>
+<blockquote class="last">
+<div><ol class="arabic simple">
+<li>A dot is following by a line break, or</li>
+<li>Two subsequent line breaks are encountered.</li>
+</ol>
+</div></blockquote>
+</dd>
+<dt><a class="reference internal" href="../glossary.html#term-description"><em class="xref std std-term">Description</em></a></dt>
+<dd>Sometimes called the long description, can provide more information. Examples of additional information is a
+description of a function&#8217;s algorithm, a usage example or description how a class fits in the whole of the
+application&#8217;s architecture. The description ends when the first tag is encountered or when the DocBlock is closed.</dd>
+<dt><a class="reference internal" href="../glossary.html#term-tags"><em class="xref std std-term">Tags</em></a> and <a class="reference internal" href="../glossary.html#term-annotations"><em class="xref std std-term">annotations</em></a></dt>
+<dd>These provide a way to succinctly and uniformly provide meta-information about the associated element. This could,
+for example, describe the type of information that is returned by a method or function. Each tag is preceded by an
+at-sign (<cite>&#64;</cite>) and starts on a new line.</dd>
+</dl>
+</div>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>A DocBlock looks like this:</p>
+<div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x"> </span><span class="cp">&lt;?php</span>
+ <span class="sd">/**</span>
+<span class="sd">  * A summary informing the user what the associated element does.</span>
+<span class="sd">  *</span>
+<span class="sd">  * A *description*, that can span multiple lines, to go _in-depth_ into the details of this element</span>
+<span class="sd">  * and to provide some background information or textual references.</span>
+<span class="sd">  *</span>
+<span class="sd">  * @param string $myArgument With a *description* of this argument, these may also</span>
+<span class="sd">  *    span multiple lines.</span>
+<span class="sd">  *</span>
+<span class="sd">  * @return void</span>
+<span class="sd">  */</span>
+  <span class="k">function</span> <span class="nf">myFunction</span><span class="p">(</span><span class="nv">$myArgument</span><span class="p">)</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+</pre></div>
+</td></tr></table></div>
+<p>Let&#8217;s go through this example line by line and discuss which is which,</p>
+<dl class="docutils">
+<dt>Line 2</dt>
+<dd>shows that a DocBlock starts with the opening sequence <tt class="docutils literal"><span class="pre">/**</span></tt>.</dd>
+<dt>Line 3</dt>
+<dd>has an example of a <a class="reference internal" href="../glossary.html#term-summary"><em class="xref std std-term">Summary</em></a>. This is, usually, a single line but may cover multiple lines as long as the end
+of the summary, as defined in the previous chapter, is not reached.</dd>
+<dt>Line 5 and 6</dt>
+<dd>show an example of a <a class="reference internal" href="../glossary.html#term-description"><em class="xref std std-term">Description</em></a>, which may span multiple lines and can be formatted using the
+<a class="reference external" href="http://daringfireball.com">Markdown</a> markup language. Using <a class="reference external" href="http://daringfireball.com">Markdown</a> you can make text bold, italic, add numbered lists and even provide code
+examples.</dd>
+<dt>Line 8 and 11</dt>
+<dd>show that you can include <a class="reference internal" href="../references/phpdoc/tags/index.html"><em>tags</em></a> with your DocBlocks to provide additional
+information about the succeeding element.
+In this example we declare that the argument <tt class="docutils literal"><span class="pre">$myArgument</span></tt> is of type string, with a description what this argument
+represents, and we declare that the return value for this method is void, which means that there is no value returned.</dd>
+<dt>Line 12</dt>
+<dd>shows the closing statement <tt class="docutils literal"><span class="pre">*/</span></tt>, which is the same as that for a multiline comment (<tt class="docutils literal"><span class="pre">/*</span> <span class="pre">..</span> <span class="pre">*/</span></tt>).</dd>
+</dl>
+<p>If you&#8217;d like to know more about what DocBlocks do for you, visit the chapter <a class="reference internal" href="../guides/docblocks.html"><em>Inside DocBlocks</em></a> for more
+in-depth information.</p>
+</div>
+</div>
+<div class="section" id="running-phpdocumentor">
+<h2>Running phpDocumentor<a class="headerlink" href="#running-phpdocumentor" title="Permalink to this headline">¶</a></h2>
+<p>After you have <a class="reference internal" href="installing.html"><em>installed</em></a> phpDocumentor you can use the <tt class="docutils literal"><span class="pre">phpdoc</span></tt> command to generate
+your documentation.</p>
+<p>In this document we expect that the phpdoc command is available; thus whenever we ask you to run a command
+it would be in the following form:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ phpdoc
+</pre></div>
+</div>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p>When you have installed a version via composer or manually you should invoke the <tt class="docutils literal"><span class="pre">phpdoc</span></tt> script in
+the <tt class="docutils literal"><span class="pre">bin</span></tt> folder of your phpDocumentor installation.</p>
+<p>Under Linux / MacOSX that would be:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ [PHPDOC_FOLDER]/bin/phpdoc
+</pre></div>
+</div>
+<p>And under Windows that would be:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span></span>$ [PHPDOC_FOLDER]\bin\phpdoc.bat
+</pre></div>
+</div>
+</div>
+<p>The basic usage of phpDocumentor is to provide an input location using the command line options
+(<tt class="docutils literal"><span class="pre">-d</span></tt> for a directory, <tt class="docutils literal"><span class="pre">-f</span></tt> for a file) and tell it to output your documentation to a folder of your
+liking (<tt class="docutils literal"><span class="pre">-t</span></tt>).</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ phpdoc -d ./src -t ./docs/api
+</pre></div>
+</div>
+<p>What the above example does is scan all files in the <tt class="docutils literal"><span class="pre">src</span></tt> directory and its subdirectories, perform an analysis and
+generate a website containing the documentation in the folder <tt class="docutils literal"><span class="pre">docs/api</span></tt>. If you want you can even omit the <tt class="docutils literal"><span class="pre">-t</span></tt>
+option, in which case the output will be written to a subfolder called <tt class="docutils literal"><span class="pre">output</span></tt>.</p>
+<div class="admonition hint">
+<p class="first admonition-title">Hint</p>
+<p class="last">phpDocumentor features several <a class="reference external" href="http://phpdoc.org/templates">templates</a> with which you can change the appearance of your documentation. See the
+chapter <a class="reference internal" href="changing-the-look-and-feel.html"><em>Changing the Look and Feel</em></a> for more information on how to switch between templates.</p>
+</div>
+<p>There are a lot more options to phpDocumentor and you can define them all in a <a class="reference internal" href="../references/configuration.html"><em>Configuration</em></a> file
+and include that in your project but that is out of scope for this tutorial. If you&#8217;d like to know more on running
+phpDocumentor; see the guide on <a class="reference internal" href="../guides/running-phpdocumentor.html"><em>Running phpDocumentor</em></a> for more information.</p>
+</div>
+</div>
+
+
+
+            
+            </div>
+            
+        </div>
+    </div>
+
+  <div class="row">
+    <footer class="span12">
+        <p>
+            Created using <a
+                href="http://sphinx.pocoo.org/">Sphinx</a> 1.2.2.
+        </p>
+    </footer>
+  </div>
+</div>
+
+</body>
+</html>

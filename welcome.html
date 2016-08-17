@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>Learn about phpDocumentor &mdash; phpDocumentor</title>
+    <title>Welcome &mdash; phpDocumentor</title>
 
     <link rel="stylesheet" href="_static/default.css" type="text/css"/>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css"/>
@@ -68,8 +68,9 @@
     <link rel="apple-touch-icon" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="114x114" href="http://demo.phpdoc.org/Responsive/img/apple-touch-icon-114x114.png">
-        <link rel="top" title="phpDocumentor" href="#"/>
-        <link rel="next" title="Welcome" href="welcome.html"/> 
+        <link rel="top" title="phpDocumentor" href="index.html"/>
+        <link rel="next" title="Getting started" href="getting-started/index.html"/>
+        <link rel="prev" title="Learn about phpDocumentor" href="index.html"/> 
 </head>
 <body>
 
@@ -116,10 +117,24 @@
 
     <div class="row">
         <div class="span3">
+        <h3><a href="index.html">Table Of Contents</a>
+        </h3>
+        <ul>
+<li><a class="reference internal" href="#">Welcome</a><ul>
+<li><a class="reference internal" href="#what-is-phpdocumentor">What is phpDocumentor</a></li>
+<li><a class="reference internal" href="#goals">Goals</a></li>
+</ul>
+</li>
+</ul>
+
+        <h4>Previous topic</h4>
+
+        <p class="topless"><a href="index.html"
+                              title="previous chapter">Learn about phpDocumentor</a></p>
         <h4>Next topic</h4>
 
-        <p class="topless"><a href="welcome.html"
-                              title="next chapter">Welcome</a></p>
+        <p class="topless"><a href="getting-started/index.html"
+                              title="next chapter">Getting started</a></p>
         <div id="searchbox" style="display: none">
             <h3>Search</h3>
 
@@ -143,69 +158,94 @@
             </a>
         </li>
         <li class="right" style="margin-right: 10px; margin-top: 6px;">
-            <a href="welcome.html" title="Welcome" accesskey="N">
+            <a href="getting-started/index.html" title="Getting started" accesskey="N">
                 next
+            </a> |
+        </li>
+        <li class="right" style="margin-right: 10px; margin-top: 6px;">
+            <a href="index.html" title="Learn about phpDocumentor" accesskey="P">
+                previous
             </a> |
         </li>
         <li>
             <a href="http://www.phpdoc.org">Homepage</a>  &raquo;
         </li>
         <li>
-            <a href="#">Documentation</a>  &raquo;
+            <a href="index.html">Documentation</a>  &raquo;
         </li> 
     </ul>
 </div>
             </div>
 
             
+            <div class="well">
+            
 
             
-  <div class="section" id="learn-about-phpdocumentor">
-<h1>Learn about phpDocumentor<a class="headerlink" href="#learn-about-phpdocumentor" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#what-is-phpdocumentor">What is phpDocumentor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="welcome.html#goals">Goals</a></li>
+  <div class="section" id="welcome">
+<h1>Welcome<a class="headerlink" href="#welcome" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the complete documentation for phpDocumentor.</p>
+<p>With these tutorials, guides and references we try to provide you with all the information that you need to optimally
+document your code and leverage phpDocumentor to generate an extensive set of documentation for your application.</p>
+<p>The documentation is divided into 5 sections,</p>
+<ol class="arabic simple">
+<li><a class="reference internal" href="getting-started/index.html"><em>Getting started</em></a>, which is a series of concise tutorials that will help you get running within minutes.</li>
+<li><a class="reference internal" href="guides/index.html"><em>Guides</em></a>, these chapters provide in-depth information in the usage and all features of phpDocumentor.</li>
+<li><a class="reference internal" href="references/index.html"><em>リファレンス</em></a>, here you can find the nitty-gritty lists of commonly used components, options and
+configuration.</li>
+<li><a class="reference internal" href="internals/index.html"><em>Internals</em></a>, care to contribute to phpDocumentor or interested in its architecture? Then this section
+is for you.</li>
+<li><a class="reference internal" href="cookbook/index.html"><em>Cookbook</em></a>, ever wondered how to accomplish a specific feat? This section provides answers to such
+questions.</li>
+</ol>
+<p>Documenting source code comes with quite a bit of lingo and specific terms; because it can be hard to remember them all
+there is also a <a class="reference internal" href="glossary.html"><em>用語集</em></a> that aims to explains all concepts. Throughout this documentation we continuously refer
+to it, to help you comprehend everything that phpDocumentor has to offer.</p>
+<div class="section" id="what-is-phpdocumentor">
+<h2>What is phpDocumentor<a class="headerlink" href="#what-is-phpdocumentor" title="Permalink to this headline">¶</a></h2>
+<p>phpDocumentor is the de-facto API Documentation Generator for PHP since the year 2000.</p>
+<p>phpDocumentor 2 is a tool with which it is possible to generate documentation from your PHP source code. With this
+documentation you can provide your consumers with more information regarding the functionality embedded within your
+source and not only what is usable to them from your user interface.</p>
+<p>Documentation generated by phpDocumentor 2 does not aim to be a replacement for conventional documentation but is
+rather supplemental, or reference, documentation.</p>
+<p>This documention can prove to be very useful in the following, example, situations:</p>
+<ul class="simple">
+<li>Sets of libraries or applications providing an API, such as frameworks as Zend Framework or Symfony.</li>
+<li>Pluggable architectures, such as WordPress or PyroCMS.</li>
+<li>Long-running, complex projects, to help you find the right function or method for the job.</li>
+</ul>
+</div>
+<div class="section" id="goals">
+<h2>Goals<a class="headerlink" href="#goals" title="Permalink to this headline">¶</a></h2>
+<p>The phpDocumentor project has the following goal:</p>
+<blockquote>
+<div><em>&#8220;Provide PHP Developers with all the tools and resources necessary to write
+effective and comprehensive documentation with as little effort possible.&#8221;</em></div></blockquote>
+<p>It tries to achieve this goal by:</p>
+<ul class="simple">
+<li>Maintaining the <a class="reference external" href="https://github.com/phpDocumentor/fig-standards/blob/master/proposed/phpdoc.md">PHPDoc Standard</a> for describing source code meta-information using DocBlocks</li>
+<li>Providing the application <a class="reference external" href="https://github.com/phpDocumentor/phpDocumentor2">phpDocumentor</a> to<ul>
+<li>Generate API Documentation</li>
+<li>Create reports on errors in your DocBlocks, deprecated elements and TODOs</li>
+<li>Generate graphs to help understand how your project is coupled</li>
+<li>Generate Reference Documentation</li>
+<li>Generate User manuals</li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting-started/index.html">Getting started</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting-started/installing.html">Installing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started/your-first-set-of-documentation.html">Your First Set of Documentation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting-started/changing-the-look-and-feel.html">Changing the Look and Feel</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="guides/index.html">Guides</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guides/docblocks.html">Inside DocBlocks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/types.html">Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/inheritance.html">Inheritance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guides/running-phpdocumentor.html">Running phpDocumentor</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="references/index.html">リファレンス</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="references/phpdoc/index.html">PHPDoc リファレンス</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/configuration.html">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="references/commands/index.html">Commands</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="internals/index.html">Internals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="internals/qa.html">Quality Assurance</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/flow.html">Application Flow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/tags.html">Tags</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/versioning.html">Versioning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="internals/build-and-release-process.html">Build and Release process</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="cookbook/index.html">Cookbook</a><ul class="simple">
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="glossary.html">用語集</a></li>
+<li>Providing a comprehensive documentation regarding the PHPDoc Standard, how to effectively write your source
+documentation and how each of the applications work.</li>
+<li>Providing <a class="reference external" href="http://www.phpdoc.org/templates">templates</a> to change the look and feel of phpDocumentor.</li>
+<li>Enabling PHP Developers to extend the functionality and/or integrate these tools into your own application using
+plugins.</li>
 </ul>
 </div>
 </div>
 
 
 
+            
+            </div>
             
         </div>
     </div>
