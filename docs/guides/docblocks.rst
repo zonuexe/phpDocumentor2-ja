@@ -1,14 +1,14 @@
-Inside DocBlocks
+DocBlocksの中身
 ================
 
-Overview
+概観
 --------
 
 If all is well you have read the :doc:`Getting Started<../getting-started/your-first-set-of-documentation>` and got a
 basic idea on what a :term:`DocBlock` is and what you can do with it. In this guide I will repeat some of the bits and
 then dive a lot deeper in and discuss the details on what constitutes a DocBlock and what you can do with it.
 
-Anatomy of a DocBlock
+DocBlockの解剖学
 ---------------------
 
 Using a DocBlock you are able to effectively document your application's API (Application Programming Interface) by
@@ -63,7 +63,7 @@ A series of tags
    The order of these elements matter; you cannot put a summary or description after the tags as it will be seen as part
    of the last tag.
 
-Summary
+サマリ
 ~~~~~~~
 
 The summary is a short but effective overview of an element; you can compare it to a slogan or headline.
@@ -89,7 +89,7 @@ The summary can be separated from the description in two ways:
 
 There is not much more to summaries, they are simple and straightforward to use.
 
-Description
+説明文
 ~~~~~~~~~~~
 
 This is where the fun starts! A description can be a long text with an elaborate explanation what the associated
@@ -109,7 +109,7 @@ are and what they do.
 
 The description can be as long as you would like and ends when a tag is encountered for the first time.
 
-Tags
+タグ
 ~~~~
 
 Tags are a type of specialized information (meta-data) about the associated element. At the time of writing of this
@@ -141,11 +141,11 @@ Most tags are associated with a specific element type. So some tags only apply t
 The easiest way to see to which element a tag applies is to check the documentation for each tag, or consult the
 table in the next chapter.
 
-List of tags
+タグの一覧
 ++++++++++++
 
 ============== ================ ========================================================================================
-Tag            Element          Description
+タグ           要素             説明
 ============== ================ ========================================================================================
 api            Methods          declares that elements are suitable for consumption by third parties.
 author         Any              documents the author of the associated element.
@@ -184,8 +184,8 @@ version        Any              indicates the current version of Structural Elem
 Please see the :doc:`tag reference<../references/phpdoc/tags/index>` for the canonical list of tags and their complete
 descriptions.
 
-Annotations
-+++++++++++
+アノテーション
+++++++++++++++
 
 In addition to the above you might also encounter :term:`Annotations` when viewing DocBlocks. An :term:`Annotation` is
 a specialized form of tag that not only documents a specific aspect of the associated element but also influences the
