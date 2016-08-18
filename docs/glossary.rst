@@ -199,4 +199,4 @@ Glossary
         The Service Provider is a concept coming from Pimple_, the dependency injection container powering
         phpDocumentor.
 
-.. _Pimple: http://pimple
+.. _Pimple: http://pimple.sensiolabs.org/
