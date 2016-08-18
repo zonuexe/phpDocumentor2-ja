@@ -220,14 +220,24 @@
     Transformations
         Action definitions that are part of :term:`Templates` and are used to determine what the template does.
 
+    サマリ
     要約
     Summary
       Sometimes called a short description, provides a brief introduction into the function of the associated element.
+
+      「短い説明文」とも呼ばれ、函数または関連する要素の要約した紹介を書きます。
+
       A Summary ends
       in one of these situations:
 
+      サマリの終端は以下のいづれかの場合です：
+
         1. A dot is following by a line break, or
+
+           行の最後がドットで終る、または
         2. Two subsequent line breaks are encountered.
+
+           二つの連続した改行があるとき。
 
     説明文
     Description
@@ -249,12 +259,17 @@
         Some tags can also be used within text such as descriptions, such as the :doc:`references/phpdoc/tags/link` tag.
         Inline tags are surrounded by braces to set them apart from the surrounding text.
 
+        :doc:`references/phpdoc/tags/link` など、いくつかのタグは説明文といったテキストの中にタグを使用できます。インラインタグは周囲と分離するため、波括弧 `{}` で括ります。
+
+    アノテーション
     注釈
     Annotation
     Annotations
         An annotation is a specialized form of tag, that not only documents a specific aspect of the associated element,
         but also influences the way the application behaves.  Specific functionality depends on the library that is
         using them, for instance in Doctrine you can specify that a class represents a database entity as follows:
+
+        アノテーションは特別な形式のタグで、関連要素の仕様を文書化するのみならず、アプリケーションの振舞に影響をもたらします。機能の仕様は利用するライブラリに依存しますが、Doctrineのインスタンスは次のようにデータベースのエンティティを記述できます。
 
         .. code-block:: php
             :linenos:
@@ -265,8 +280,11 @@
 
         For more on annotations, see Rafael Dohms' `video presentation <http://protalk.me/annotating-with-annotations>`_ or `slides <http://www.slideshare.net/rdohms/annotations-in-php-they-exist>`_ on annotations.
 
+        ほかのアノテーションについてはRafael Dohmsの `video presentation <http://protalk.me/annotating-with-annotations>`_ または `slides <http://www.slideshare.net/rdohms/annotations-in-php-they-exist>`_ をご覧ください。
+
     プラグイン
     Plugin
+    サービスプロバイダ
     Service Provider
         A Service Provider is part of the Plugin system for phpDocumentor. Each plugin must have a Service Provider
         class that will bind the classes necessary for that plugin into the Dependency Injection Container or one of
