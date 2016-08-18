@@ -122,9 +122,9 @@ The following keywords are recognized:
     この型が適用される要素は任意の型の値です。それはコンパイル時に型が使用されません。
 
 7.  **array**, the element to which this type applies is an array of values,
-    see the section on :term:`Arrays` for more details.
+    see the section on `Arrays`_ for more details.
 
-    この型が適用される要素は値の配列で、詳しくは :term:`Arrays` の節をお読みください。
+    この型が適用される要素は値の配列で、詳しくは `Arrays`_ の節をお読みください。
 
 8.  **resource**, the element to which this type applies is a resource per
     the definition of PHP at

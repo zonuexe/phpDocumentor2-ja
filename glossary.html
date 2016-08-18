@@ -393,33 +393,42 @@ inside the <em>My\Space</em> namespace.</p>
 For an overview of templates, see <a class="reference internal" href="guides/templates.html"><em>Writing your own Template</em></a>.</dd>
 <dt id="term-transformation"><span id="term-transformations"></span>Transformation<br />Transformations</dt>
 <dd>Action definitions that are part of <a class="reference internal" href="#term-templates"><em class="xref std std-term">Templates</em></a> and are used to determine what the template does.</dd>
-<dt id="term-24"><span id="term-summary"></span>要約<br />Summary</dt>
-<dd><p class="first">Sometimes called a short description, provides a brief introduction into the function of the associated element.
-A Summary ends
+<dt id="term-24"><span id="term-25"></span><span id="term-summary"></span>サマリ<br />要約<br />Summary</dt>
+<dd><p class="first">Sometimes called a short description, provides a brief introduction into the function of the associated element.</p>
+<p>「短い説明文」とも呼ばれ、函数または関連する要素の要約した紹介を書きます。</p>
+<p>A Summary ends
 in one of these situations:</p>
+<p>サマリの終端は以下のいづれかの場合です：</p>
 <blockquote class="last">
-<div><ol class="arabic simple">
-<li>A dot is following by a line break, or</li>
-<li>Two subsequent line breaks are encountered.</li>
+<div><ol class="arabic">
+<li><p class="first">A dot is following by a line break, or</p>
+<p>行の最後がドットで終る、または</p>
+</li>
+<li><p class="first">Two subsequent line breaks are encountered.</p>
+<p>二つの連続した改行があるとき。</p>
+</li>
 </ol>
 </div></blockquote>
 </dd>
-<dt id="term-26"><span id="term-description"></span>説明文<br />Description</dt>
+<dt id="term-27"><span id="term-description"></span>説明文<br />Description</dt>
 <dd>Sometimes called the long description, it can provide more information than the <a class="reference internal" href="#term-summary"><em class="xref std std-term">Summary</em></a>. Examples of
 additional information are a description of a function&#8217;s algorithm, a usage example, or a description of how a
 class fits in the whole of the application&#8217;s architecture. The description ends when the first <a class="reference internal" href="#term-tag"><em class="xref std std-term">Tag</em></a>
 is encountered, or when the DocBlock is closed.</dd>
-<dt id="term-28"><span id="term-tag"></span><span id="term-tags"></span>タグ<br />Tag<br />Tags</dt>
+<dt id="term-29"><span id="term-tag"></span><span id="term-tags"></span>タグ<br />Tag<br />Tags</dt>
 <dd>These provide a way to succinctly and uniformly provide meta-information about the associated element. This could,
 for example, describe the type of information that is returned by a method or function. Each tag is preceded by an
 at-sign (<cite>&#64;</cite>) and starts on a new line.</dd>
-<dt id="term-31"><span id="term-inline-tag"></span><span id="term-inline-tags"></span>インラインタグ<br />Inline Tag<br />Inline Tags</dt>
-<dd>Some tags can also be used within text such as descriptions, such as the <a class="reference internal" href="references/phpdoc/tags/link.html"><em>&#64;link</em></a> tag.
-Inline tags are surrounded by braces to set them apart from the surrounding text.</dd>
-<dt id="term-34"><span id="term-annotation"></span><span id="term-annotations"></span>注釈<br />Annotation<br />Annotations</dt>
+<dt id="term-32"><span id="term-inline-tag"></span><span id="term-inline-tags"></span>インラインタグ<br />Inline Tag<br />Inline Tags</dt>
+<dd><p class="first">Some tags can also be used within text such as descriptions, such as the <a class="reference internal" href="references/phpdoc/tags/link.html"><em>&#64;link</em></a> tag.
+Inline tags are surrounded by braces to set them apart from the surrounding text.</p>
+<p class="last"><a class="reference internal" href="references/phpdoc/tags/link.html"><em>&#64;link</em></a> など、いくつかのタグは説明文といったテキストの中にタグを使用できます。インラインタグは周囲と分離するため、波括弧 <cite>{}</cite> で括ります。</p>
+</dd>
+<dt id="term-35"><span id="term-36"></span><span id="term-annotation"></span><span id="term-annotations"></span>アノテーション<br />注釈<br />Annotation<br />Annotations</dt>
 <dd><p class="first">An annotation is a specialized form of tag, that not only documents a specific aspect of the associated element,
 but also influences the way the application behaves.  Specific functionality depends on the library that is
 using them, for instance in Doctrine you can specify that a class represents a database entity as follows:</p>
+<p>アノテーションは特別な形式のタグで、関連要素の仕様を文書化するのみならず、アプリケーションの振舞に影響をもたらします。機能の仕様は利用するライブラリに依存しますが、Doctrineのインスタンスは次のようにデータベースのエンティティを記述できます。</p>
 <div class="highlight-php"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="x">/**</span>
@@ -427,13 +436,14 @@ using them, for instance in Doctrine you can specify that a class represents a d
 <span class="x"> */</span>
 </pre></div>
 </td></tr></table></div>
-<p class="last">For more on annotations, see Rafael Dohms&#8217; <a class="reference external" href="http://protalk.me/annotating-with-annotations">video presentation</a> or <a class="reference external" href="http://www.slideshare.net/rdohms/annotations-in-php-they-exist">slides</a> on annotations.</p>
+<p>For more on annotations, see Rafael Dohms&#8217; <a class="reference external" href="http://protalk.me/annotating-with-annotations">video presentation</a> or <a class="reference external" href="http://www.slideshare.net/rdohms/annotations-in-php-they-exist">slides</a> on annotations.</p>
+<p class="last">ほかのアノテーションについてはRafael Dohmsの <a class="reference external" href="http://protalk.me/annotating-with-annotations">video presentation</a> または <a class="reference external" href="http://www.slideshare.net/rdohms/annotations-in-php-they-exist">slides</a> をご覧ください。</p>
 </dd>
-<dt id="term-37"><span id="term-plugin"></span><span id="term-service-provider"></span>プラグイン<br />Plugin<br />Service Provider</dt>
+<dt id="term-39"><span id="term-plugin"></span><span id="term-41"></span><span id="term-service-provider"></span>プラグイン<br />Plugin<br />サービスプロバイダ<br />Service Provider</dt>
 <dd><p class="first">A Service Provider is part of the Plugin system for phpDocumentor. Each plugin must have a Service Provider
 class that will bind the classes necessary for that plugin into the Dependency Injection Container or one of
 it services.</p>
-<p class="last">The Service Provider is a concept coming from <a class="reference external" href="http://pimple">Pimple</a>, the dependency injection container powering
+<p class="last">The Service Provider is a concept coming from <a class="reference external" href="http://pimple.sensiolabs.org/">Pimple</a>, the dependency injection container powering
 phpDocumentor.</p>
 </dd>
 </dl>
